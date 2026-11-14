@@ -1,0 +1,19 @@
+{
+  "name": "ha-assist-card",
+  "version": "1.0.0",
+  "description": "Lovelace cards for Home Assistant to chat with an Assist pipeline or any conversation agent (built-in Assist, Google Generative AI, OpenAI, Anthropic, Ollama…) from a dashboard.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/build.mjs && node --check dist/assist-card.js",
+    "test": "node --test test/*.test.mjs",
+    "screenshots": "node scripts/screenshots.mjs"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "acorn": "^8.19.0",
+    "css-tree": "^3.2.1",
+    "playwright": "^1.56.1"
+  }
+}
