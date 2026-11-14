@@ -38,7 +38,7 @@ A full **chat card** with bubbles, streamed answers, the tools the agent called 
 - **Spoken answers** (`speak: true`) through the pipeline's text-to-speech
 - **Suggestion chips** above the text field: your own list (`suggestions`), or a few requests about the card's **area** (`area`), which is also given as context to AI agents ("In the Living room: is it warm enough?")
 - Any **pipeline** (the preferred one by default) or any **conversation agent** directly (`agent_id`)
-- Status chip in the header: ready, listening, transcribing, thinking, speaking, error, unavailable; the agent's integration logo on the header icon (click it for the agent's more-info dialog)
+- Header: the chatbot icon (click it for the agent's more-info dialog), the pipeline and the agent as subtitle, the agent's integration logo small before its name, and a status chip: ready, listening, transcribing, thinking, speaking, error, unavailable
 - **Mini card**: a big centred microphone, the last question in quotes and the last answer under it, the suggestion chips; its detail button (top right) unfolds the full chat, and a click anywhere else folds it back. Without a microphone (no speech-to-text in the pipeline, `voice: false`, a page not served over HTTPS) it shows a text field instead
 - Visual editor in the dashboard UI for both cards
 - Sections view: the full card takes 12 columns by default and at least 6, the mini card 6

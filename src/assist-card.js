@@ -1481,12 +1481,13 @@ const BASE_STYLE = `
   :host([hide-title]) .titles > .name, :host([hide-subtitle]) .titles > .sub { display: none; }
   .name { font-size: 16px; font-weight: 500; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .sub { font-size: 12px; color: var(--secondary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .badge { position: relative; display: flex; flex: none; width: 40px; height: 40px; border-radius: 50%; align-items: center; justify-content: center;
-           --ac-tint: var(--c, var(--ac-accent)); background: color-mix(in srgb, var(--ac-tint) 16%, transparent); transition: background-color .3s ease; }
+  /* The badge keeps the accent color whatever the state: the status pill tells the state. */
+  .badge { display: flex; flex: none; width: 40px; height: 40px; border-radius: 50%; align-items: center; justify-content: center;
+           background: color-mix(in srgb, var(--ac-accent) 16%, transparent); }
   .badge.clickable { cursor: pointer; }
-  .badge .icon.type { width: 24px; height: 24px; fill: color-mix(in srgb, var(--ac-tint) 60%, var(--primary-text-color)); transition: fill .3s ease; }
-  .badge .logo { position: absolute; right: -4px; bottom: -4px; width: 18px; height: 18px; border-radius: 5px; object-fit: contain;
-                 background: #fff; box-shadow: 0 0 0 1px var(--divider-color, rgba(0,0,0,.12)), 0 0 0 3px var(--card-background-color, #fff); }
+  .badge .icon.type { width: 24px; height: 24px; fill: color-mix(in srgb, var(--ac-accent) 60%, var(--primary-text-color)); }
+  /* The agent's integration logo, small, before its name in the subtitle. */
+  .sub .logo { width: 14px; height: 14px; margin-inline-end: 4px; vertical-align: -2px; border-radius: 3px; object-fit: contain; }
   .pill { display: inline-flex; align-items: center; gap: 5px; padding: 2px 9px; border-radius: 12px; font-size: 11px; font-weight: 500; white-space: nowrap;
           background: color-mix(in srgb, var(--c) 15%, transparent); color: color-mix(in srgb, var(--c) 50%, var(--primary-text-color));
           flex: 0 1 auto; min-width: 0; max-width: 45%; overflow: hidden; box-sizing: border-box; }
@@ -1823,23 +1824,26 @@ class AssistCard extends HTMLElement {
     return ["ready", "accent"];
   }
 
+  // The subtitle (HTML): the pipeline, then the agent with its integration's logo before its name.
   _subtitle() {
     const c = this._config;
-    const agent = agentName(this._hass, this._agentId());
-    if (c.agent_id) return agent;
-    const p = this._pipeline();
-    const name = p?.name || (isPreferred(c.pipeline) ? this._t("preferred") : c.pipeline);
-    return [name, agent && agent !== name ? agent : ""].filter(Boolean).join(" · ");
-  }
-
-  _badge(cls) {
-    const agent = this._agentId();
-    const platform = agentPlatform(this._hass, agent);
+    const id = this._agentId();
+    const agent = agentName(this._hass, id);
+    const platform = agentPlatform(this._hass, id);
     const dark = !!this._hass.themes?.darkMode;
     const logo = platform && !BROKEN_LOGOS.has(platform) ? `<img data-platform="${esc(platform)}" class="logo" src="${esc(brandIcon(platform, dark))}" alt="">` : "";
+    const withLogo = agent ? `${logo}${esc(agent)}` : "";
+    if (c.agent_id) return withLogo;
+    const p = this._pipeline();
+    const name = p?.name || (isPreferred(c.pipeline) ? this._t("preferred") : c.pipeline);
+    return [esc(name), agent && agent !== name ? withLogo : ""].filter(Boolean).join(" · ");
+  }
+
+  _badge() {
+    const agent = this._agentId();
     const entity = agent && this._hass.states?.[agent] ? agent : "";
     const attrs = entity ? ` clickable" role="button" tabindex="0" data-action="more" data-entity="${esc(entity)}" title="${esc(agentName(this._hass, agent))}"` : '"';
-    return `<span class="badge ${cls}${attrs}>${svgIcon(ICONS.bot, "type")}${logo}</span>`;
+    return `<span class="badge${attrs}>${svgIcon(ICONS.bot, "type")}</span>`;
   }
 
   _header(sub, compact = false) {
@@ -1850,10 +1854,10 @@ class AssistCard extends HTMLElement {
       ? `<button class="hbtn" data-action="new" title="${esc(this._t("new_chat"))}" aria-label="${esc(this._t("new_chat"))}">${svgIcon(ICONS.new_chat)}</button>`
       : "";
     return `<div class="header">
-        ${this._badge(cls)}
+        ${this._badge()}
         <div class="titles">
           <div class="name">${esc(this._config.title || this._t("default_title"))}</div>
-          ${sub ? `<div class="sub">${esc(sub)}</div>` : ""}
+          ${sub ? `<div class="sub">${sub}</div>` : ""}
         </div>
         <span class="pill ${cls}" role="status" title="${esc(text)}" aria-label="${esc(text)}"><span class="dot"></span><span class="pill-text">${esc(text)}</span></span>
         ${newChat}${this._zoomButton()}

@@ -65,7 +65,9 @@ test("empty card: title, pipeline and agent as subtitle, ready, the agent's logo
   const card = await newCard();
   const h = html(card);
   assert.match(h, /<div class="name">Assist<\/div>/);
-  assert.match(h, /<div class="sub">Google AI · Google AI Conversation<\/div>/);
+  // The agent's logo sits before its name in the subtitle, not on the badge (a plain robot icon).
+  assert.match(h, /<div class="sub">Google AI · <img data-platform="google_generative_ai_conversation" class="logo" src="[^"]+" alt="">Google AI Conversation<\/div>/);
+  assert.match(h, /<span class="badge clickable"[^>]*><svg class="icon type"[^>]*><path d="[^"]+"\/><\/svg><\/span>/);
   assert.match(h, /pill accent/);
   assert.match(h, />Ready</);
   assert.match(h, /How can I help\?/);
@@ -180,7 +182,7 @@ test("area: default suggestions for it, the area given to AI agents but not to t
 test("agent_id: conversation/process with the agent, the conversation id for follow-ups, speech through the pipeline", async () => {
   const hass = makeHass();
   const card = await newCard({ agent_id: "conversation.google_ai_conversation", speak: true }, hass);
-  assert.match(html(card), /<div class="sub">Google AI Conversation<\/div>/);
+  assert.match(html(card), /<div class="sub"><img data-platform="google_generative_ai_conversation" class="logo"[^>]*>Google AI Conversation<\/div>/);
   await card._send("Which lights are still on?");
   await card._send("Turn on the living room lights");
   const conv = hass.log.filter((m) => m.type === "conversation/process");
