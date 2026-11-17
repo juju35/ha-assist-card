@@ -184,8 +184,12 @@ async function streamFrames(page, gif, fps, shoot) {
 async function makeGif(gif, { fps = 20, seconds = 1.6 } = {}) {
   const { page, context } = await openCard(browser, gif);
   const dir = mkdtempSync(join(tmpdir(), "ac-frames-"));
-  // The clip of the final state (the tallest), the chat having a fixed height anyway.
+  // The clip of the tallest state: the chat grows with the conversation up to its maximum height.
   const clip = await clipOf(page, gif.width);
+  clip.height += await page.evaluate(() => {
+    const chat = window.card.shadowRoot.querySelector(".chat");
+    return chat ? Math.max(0, Math.ceil(Number.parseFloat(getComputedStyle(chat).maxHeight) - chat.offsetHeight)) : 0;
+  });
   const shoot = async (i, n) => {
     if (!n) throw new Error(`${gif.file}: no animation found to step`);
     await page.screenshot({ path: join(dir, `f${String(i).padStart(3, "0")}.png`), clip });

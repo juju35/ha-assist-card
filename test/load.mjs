@@ -78,7 +78,7 @@ export const load = () => {
   vm.createContext(sandbox);
   return vm.runInContext(
     `${source}
-    ({ STRINGS, ICONS, LANGUAGES, esc, md, lang, t, speechOf, pickPipeline, isBuiltin, agentName, agentPlatform, suggestionsOf, toPcm16, cleanConfig,
+    ({ STRINGS, ICONS, LANGUAGES, esc, md, lang, t, speechOf, pickPipeline, isBuiltin, agentName, agentPlatform, suggestionsOf, toPcm16, cleanConfig, isNight, assistScene, SCENE_STATES,
        AssistCard: customElements.get("assist-card"), AssistMiniCard: customElements.get("assist-mini-card"),
        AssistCardEditor: customElements.get("assist-card-editor"), AssistMiniCardEditor: customElements.get("assist-mini-card-editor"), window, document, docListeners })`,
     sandbox,

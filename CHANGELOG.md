@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.1.0 - 2026-11-17
+
+### Features
+- Illustrated header on the full and the mini card (90 px): a living room with a smart speaker on a sideboard, on a 10 px parquet strip edge to edge, the title, the status and the subtitle on the wall at the left. The speaker shows the state: its light ring breathing when ready, sound waves coming in and a voice level bubble while it listens, a spinning ring and thinking dots while it transcribes or thinks, sound waves going out while it speaks, a « ! » and a shake on an error, its light off when unavailable.
+- The header icon (a microphone in the illustrated header, the chatbot in the classic one) is now in the color of the status, day and night; the agent's integration logo sits on it in the illustrated header.
+- Night picture after sunset (`sun.sun`) or with the dark theme, forced with `illustration_theme: day | night`; `illustration: false` keeps the classic header. Both options in the visual editors, translated in every language; `prefers-reduced-motion` honoured.
+- The status pill is back on the title row, right after the title and in the icon's status color, with or without the illustration, as long as the title stays whole and the pill keeps its whole label beside it (measured by the card in every language, no fixed width threshold); otherwise it takes its own line under a one-line subtitle, and keeps its dot alone when even that does not fit the banner, and below 200 px. The mini card's expand / collapse button and the new conversation button are 24 px frosted discs on the banner's top-right line.
+- **Night picture with the dark theme even while the sun is up**: in `auto`, the banner shows the night picture when the sun is below the horizon or Home Assistant's theme is dark.
+
+### Fixes
+- **No empty block under a short conversation**: the full card's chat grows with the conversation up to its `height` (now a maximum), then scrolls, so the suggestions and the input bar follow the last message instead of leaving a large gap; the input's placeholder ends with an ellipsis on a narrow card.
+
 ## 1.0.0 - 2026-11-14
 
 ### Features

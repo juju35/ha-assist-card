@@ -62,12 +62,13 @@ test("agents: the built-in one has no logo and is not given the area, the others
 });
 
 test("empty card: title, pipeline and agent as subtitle, ready, the agent's logo, no suggestion without an area", async () => {
-  const card = await newCard();
+  const card = await newCard({ illustration: false });
   const h = html(card);
   assert.match(h, /<div class="name">Assist<\/div>/);
-  // The agent's logo sits before its name in the subtitle, not on the badge (a plain robot icon).
+  // Classic header: the agent's logo sits before its name in the subtitle, the badge is the robot in the status color.
   assert.match(h, /<div class="sub">Google AI · <img data-platform="google_generative_ai_conversation" class="logo" src="[^"]+" alt="">Google AI Conversation<\/div>/);
-  assert.match(h, /<span class="badge clickable"[^>]*><svg class="icon type"[^>]*><path d="[^"]+"\/><\/svg><\/span>/);
+  assert.match(h, /<span class="badge accent clickable"[^>]*><svg class="icon type"[^>]*><path d="[^"]+"\/><\/svg><\/span>/);
+  assert.doesNotMatch(h, /class="banner/);
   assert.match(h, /pill accent/);
   assert.match(h, />Ready</);
   assert.match(h, /How can I help\?/);
@@ -181,7 +182,7 @@ test("area: default suggestions for it, the area given to AI agents but not to t
 
 test("agent_id: conversation/process with the agent, the conversation id for follow-ups, speech through the pipeline", async () => {
   const hass = makeHass();
-  const card = await newCard({ agent_id: "conversation.google_ai_conversation", speak: true }, hass);
+  const card = await newCard({ agent_id: "conversation.google_ai_conversation", speak: true, illustration: false }, hass);
   assert.match(html(card), /<div class="sub"><img data-platform="google_generative_ai_conversation" class="logo"[^>]*>Google AI Conversation<\/div>/);
   await card._send("Which lights are still on?");
   await card._send("Turn on the living room lights");
@@ -344,16 +345,65 @@ test("editors: pipeline, agent and area pickers; options at their default are no
   const ed = new ac.AssistCardEditor();
   ed._config = {};
   const names = ed._schema().flatMap((s) => (s.schema ? s.schema.map((x) => x.name) : [s.name]));
-  assert.deepEqual(plain(names), ["pipeline", "agent_id", "title", "area", "show_title", "show_subtitle", "show_suggestions", "area_context", "voice", "speak", "height", "language"]);
+  assert.deepEqual(plain(names), ["pipeline", "agent_id", "title", "area", "illustration", "show_title", "show_subtitle", "show_suggestions", "area_context", "voice", "speak", "illustration_theme", "height", "language"]);
   assert.ok(ed._schema()[0].selector.assist_pipeline);
   assert.ok(ed._schema()[1].selector.conversation_agent);
-  const defaults = { ...Object.fromEntries(ac.AssistCardEditor.toggles), pipeline: "preferred", height: 360 };
-  assert.deepEqual(plain(ac.cleanConfig({ type: "custom:assist-card", pipeline: "preferred", height: 360, voice: true, speak: false, agent_id: "", area: "kitchen" }, defaults)), {
+  const defaults = { ...Object.fromEntries(ac.AssistCardEditor.toggles), pipeline: "preferred", height: 360, illustration_theme: "auto" };
+  assert.deepEqual(plain(ac.cleanConfig({ type: "custom:assist-card", pipeline: "preferred", height: 360, illustration: true, illustration_theme: "auto", voice: true, speak: false, agent_id: "", area: "kitchen" }, defaults)), {
     type: "custom:assist-card",
     area: "kitchen",
   });
   assert.deepEqual(plain(ac.cleanConfig({ speak: true, height: 500, suggestions: ["a"] }, defaults)), { speak: true, height: 500, suggestions: ["a"] });
   assert.ok(ac.AssistMiniCardEditor.toggles.some(([n]) => n === "zoom"));
+});
+
+test("illustrated header: the room at the right, the microphone in the status color with the agent's logo on it", async () => {
+  const card = await newCard();
+  const h = html(card);
+  assert.match(h, /<div class="banner accent">/);
+  assert.match(h, /<div class="as-ground"/);
+  assert.match(h, /<svg class="as-scene idle"/);
+  assert.match(h, new RegExp(`<span class="badge accent clickable"[^>]*><svg class="icon type"[^>]*><path d="${ac.ICONS.mic}"/></svg><span class="blogo"><img data-platform="google_generative_ai_conversation"`));
+  // The logo moved to the icon: the subtitle keeps the names.
+  assert.match(h, /<div class="sub">Google AI · Google AI Conversation<\/div>/);
+  assert.match(h, /pill accent/);
+  // Ids of one card's picture apart from another card's.
+  const other = await newCard();
+  assert.notEqual(card._uid, other._uid);
+  assert.match(html(other), new RegExp(`id="as-glow-${other._uid}"`));
+});
+
+test("illustrated header: the scene follows the status", async () => {
+  const card = await newCard({}, makeHass(), ac.AssistMiniCard);
+  card._voice = "listening";
+  card._update();
+  assert.match(html(card), /<div class="banner crit[ "]/);
+  assert.match(html(card), /as-scene listening[\s\S]*class="as-in"[\s\S]*class="as-bars"/);
+  card._voice = "transcribing";
+  card._update();
+  assert.match(html(card), /as-scene thinking[\s\S]*class="as-dots"/);
+  card._voice = null;
+  card._speaking = true;
+  card._update();
+  assert.match(html(card), /<div class="banner ok[ "][^>]*>[\s\S]*as-scene speaking[\s\S]*class="as-out"/);
+  card._speaking = false;
+  card._messages.push({ role: "error", text: "x" });
+  card._update();
+  assert.match(html(card), /<div class="banner warn[ "][^>]*>[\s\S]*as-scene error[\s\S]*class="as-bang"/);
+  assert.equal(ac.SCENE_STATES.unavailable, "off");
+});
+
+test("illustration night: illustration_theme, else the sun, else the dark theme", () => {
+  const sun = (state, dark = false) => ({ states: { "sun.sun": { state } }, themes: { darkMode: dark } });
+  assert.equal(ac.isNight(sun("below_horizon"), {}), true);
+  assert.equal(ac.isNight(sun("above_horizon", true), {}), true, "dark theme while the sun is up: night");
+  assert.equal(ac.isNight(sun("above_horizon", false), {}), false, "light theme while the sun is up: day");
+  assert.equal(ac.isNight(sun("above_horizon", true), { illustration_theme: "day" }), false);
+  assert.equal(ac.isNight(sun("unavailable", true), {}), true);
+  assert.equal(ac.isNight(sun("above_horizon"), { illustration_theme: "night" }), true);
+  assert.equal(ac.isNight(sun("below_horizon"), { illustration_theme: "day" }), false);
+  assert.equal(ac.isNight({ states: {}, themes: { darkMode: true } }, { illustration_theme: "auto" }), true);
+  assert.equal(ac.isNight({ states: {} }, {}), false);
 });
 
 test("every language has every text, with the same placeholders", () => {
@@ -371,4 +421,11 @@ test("every language has every text, with the same placeholders", () => {
   assert.equal(ac.t({ language: "fr" }, {}, "status_ready"), ac.STRINGS.fr.status_ready);
   assert.equal(ac.lang({ language: "pt-BR" }, {}), "pt");
   assert.equal(ac.lang({ language: "sr-Latn" }, {}), "sr-Latn");
+});
+
+test("full card: the chat grows with the conversation up to its height, then scrolls (no empty block above the input)", async () => {
+  const h = html(await newCard({ height: 400 }));
+  assert.match(h, /\.chat \{ max-height: var\(--ac-height, 360px\); overflow-y: auto;/);
+  assert.doesNotMatch(h, /\.chat \{ height:/);
+  assert.match(h, /--ac-height: 400px;/);
 });
