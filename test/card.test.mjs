@@ -396,7 +396,10 @@ test("illustrated header: the scene follows the status", async () => {
 test("illustration night: illustration_theme, else the sun, else the dark theme", () => {
   const sun = (state, dark = false) => ({ states: { "sun.sun": { state } }, themes: { darkMode: dark } });
   assert.equal(ac.isNight(sun("below_horizon"), {}), true);
-  assert.equal(ac.isNight(sun("above_horizon", true), {}), false);
+  assert.equal(ac.isNight(sun("above_horizon", true), {}), true, "dark theme while the sun is up: night");
+  assert.equal(ac.isNight(sun("above_horizon", false), {}), false, "light theme while the sun is up: day");
+  assert.equal(ac.isNight(sun("above_horizon", true), { illustration_theme: "day" }), false);
+  assert.equal(ac.isNight(sun("unavailable", true), {}), true);
   assert.equal(ac.isNight(sun("above_horizon"), { illustration_theme: "night" }), true);
   assert.equal(ac.isNight(sun("below_horizon"), { illustration_theme: "day" }), false);
   assert.equal(ac.isNight({ states: {}, themes: { darkMode: true } }, { illustration_theme: "auto" }), true);

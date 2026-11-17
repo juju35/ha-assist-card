@@ -38,7 +38,7 @@ A full **chat card** with bubbles, streamed answers, the tools the agent called 
 - **Spoken answers** (`speak: true`) through the pipeline's text-to-speech
 - **Suggestion chips** above the text field: your own list (`suggestions`), or a few requests about the card's **area** (`area`), which is also given as context to AI agents ("In the Living room: is it warm enough?")
 - Any **pipeline** (the preferred one by default) or any **conversation agent** directly (`agent_id`)
-- **Illustrated header** (90 px, full and mini card): a living room with a smart speaker on a sideboard and a parquet floor strip; the speaker shows the state — its light ring breathing when ready, sound waves coming in and a voice level in a speech bubble while it **listens**, a spinning ring and thinking dots while it **transcribes or thinks**, sound waves going out while it **speaks**, a « ! » and a shake on an **error**, its light off when **unavailable**. A night version follows `sun.sun` (or the dark theme), forced with `illustration_theme`; `illustration: false` brings back the classic header
+- **Illustrated header** (90 px, full and mini card): a living room with a smart speaker on a sideboard and a parquet floor strip; the speaker shows the state — its light ring breathing when ready, sound waves coming in and a voice level in a speech bubble while it **listens**, a spinning ring and thinking dots while it **transcribes or thinks**, sound waves going out while it **speaks**, a « ! » and a shake on an **error**, its light off when **unavailable**. A night version shows after sunset (`sun.sun`) or with the dark theme, even while the sun is up, forced with `illustration_theme`; `illustration: false` brings back the classic header
 - Header: a round microphone icon in the color of the status (click it for the agent's more-info dialog) with the agent's integration logo on it, the title, the status (ready, listening, transcribing, thinking, speaking, error, unavailable) and the pipeline and agent as subtitle. In the classic header the chatbot icon, also in the status color, and the logo small before the agent's name
 - **Mini card**: a big centred microphone, the last question in quotes and the last answer under it, the suggestion chips; its detail button (top right) unfolds the full chat, and a click anywhere else folds it back. Without a microphone (no speech-to-text in the pipeline, `voice: false`, a page not served over HTTPS) it shows a text field instead
 - Visual editor in the dashboard UI for both cards
@@ -157,7 +157,7 @@ zoom: true
 | `show_title` | both | `true` | Show the title in the header |
 | `show_subtitle` | both | `true` | Show the pipeline and agent names under the title (full card) |
 | `illustration` | both | `true` | Animated illustrated header (a living room with a smart speaker showing the state). `false` shows the classic header |
-| `illustration_theme` | both | `auto` | `auto` (night when `sun.sun` is below the horizon, else with the dark theme), `day` or `night` |
+| `illustration_theme` | both | `auto` | `auto` (night when `sun.sun` is below the horizon or with the dark theme, even while the sun is up), `day` or `night` |
 | `area` | both | — | Area id: default suggestions about it, and the area given as context to AI agents |
 | `area_context` | both | `true` | Prefix typed and spoken requests with the area for AI agents ("In the Kitchen: …"). The built-in agent never gets it, as it matches set sentences |
 | `show_suggestions` | both | `true` | Show the suggestion chips |

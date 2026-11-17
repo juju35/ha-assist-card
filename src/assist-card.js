@@ -1576,14 +1576,13 @@ class VoiceRecorder {
 // The scene of each status of the card (_status()).
 const SCENE_STATES = { ready: "idle", listening: "listening", transcribing: "thinking", thinking: "thinking", speaking: "speaking", error: "error", unavailable: "off" };
 
-// Night picture: forced by illustration_theme, else the sun below the horizon, else Home Assistant's dark mode.
+// Night picture: forced by illustration_theme, else the sun below the horizon or Home Assistant's dark mode
+// (the dark theme shows the night picture even while the sun is up; an unavailable sun leaves the dark mode alone).
 const isNight = (hass, config) => {
   const theme = config?.illustration_theme;
   if (theme === "night") return true;
   if (theme === "day") return false;
-  const sun = hass?.states?.["sun.sun"]?.state;
-  if (sun === "below_horizon" || sun === "above_horizon") return sun === "below_horizon";
-  return !!hass?.themes?.darkMode;
+  return hass?.states?.["sun.sun"]?.state === "below_horizon" || !!hass?.themes?.darkMode;
 };
 
 // Three sound arcs beside the speaker: on its left (side -1) or its right (side 1).
