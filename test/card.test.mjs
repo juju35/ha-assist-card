@@ -377,7 +377,7 @@ test("illustrated header: the scene follows the status", async () => {
   const card = await newCard({}, makeHass(), ac.AssistMiniCard);
   card._voice = "listening";
   card._update();
-  assert.match(html(card), /<div class="banner crit">/);
+  assert.match(html(card), /<div class="banner crit[ "]/);
   assert.match(html(card), /as-scene listening[\s\S]*class="as-in"[\s\S]*class="as-bars"/);
   card._voice = "transcribing";
   card._update();
@@ -385,11 +385,11 @@ test("illustrated header: the scene follows the status", async () => {
   card._voice = null;
   card._speaking = true;
   card._update();
-  assert.match(html(card), /<div class="banner ok">[\s\S]*as-scene speaking[\s\S]*class="as-out"/);
+  assert.match(html(card), /<div class="banner ok[ "][^>]*>[\s\S]*as-scene speaking[\s\S]*class="as-out"/);
   card._speaking = false;
   card._messages.push({ role: "error", text: "x" });
   card._update();
-  assert.match(html(card), /<div class="banner warn">[\s\S]*as-scene error[\s\S]*class="as-bang"/);
+  assert.match(html(card), /<div class="banner warn[ "][^>]*>[\s\S]*as-scene error[\s\S]*class="as-bang"/);
   assert.equal(ac.SCENE_STATES.unavailable, "off");
 });
 

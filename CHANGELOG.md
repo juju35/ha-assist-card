@@ -6,6 +6,7 @@
 - Illustrated header on the full and the mini card (90 px): a living room with a smart speaker on a sideboard, on a 10 px parquet strip edge to edge, the title, the status and the subtitle on the wall at the left. The speaker shows the state: its light ring breathing when ready, sound waves coming in and a voice level bubble while it listens, a spinning ring and thinking dots while it transcribes or thinks, sound waves going out while it speaks, a « ! » and a shake on an error, its light off when unavailable.
 - The header icon (a microphone in the illustrated header, the chatbot in the classic one) is now in the color of the status, day and night; the agent's integration logo sits on it in the illustrated header.
 - Night picture following `sun.sun` (else the dark theme), forced with `illustration_theme: day | night`; `illustration: false` keeps the classic header. Both options in the visual editors, translated in every language; `prefers-reduced-motion` honoured.
+- The status pill is back on the banner's title row, right after the title and in the icon's status color (on its own line under the subtitle when the title needs the room, its dot alone below 200 px). The mini card's expand / collapse button and the new conversation button are 24 px frosted discs on the banner's top-right line.
 
 ## 1.0.0 - 2026-11-14
 

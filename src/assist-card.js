@@ -1605,7 +1605,7 @@ const assistScene = (uid, state) => {
     error: `<g class="as-bang"><rect x="135.8" y="10.5" width="2.4" height="8" rx="1.2"/><circle cx="137" cy="22" r="1.4"/></g>`,
   }[state];
   const sound = state === "listening" ? `<g class="as-in">${waves(-1)}</g>` : state === "speaking" ? `<g class="as-out">${waves(-1)}${waves(1)}</g>` : "";
-  return `<div class="as-ground" aria-hidden="true"></div><svg class="as-scene ${state}" viewBox="0 0 200 80" preserveAspectRatio="xMaxYMax meet" aria-hidden="true" focusable="false">
+  return `<div class="as-ground" aria-hidden="true"></div><svg class="as-scene ${state}" viewBox="0 0 200 80" preserveAspectRatio="xMaxYMax slice" aria-hidden="true" focusable="false">
     <defs>
       <radialGradient id="as-glow-${uid}"><stop offset="0" stop-color="var(--as-ring)" stop-opacity=".55"/><stop offset="1" stop-color="var(--as-ring)" stop-opacity="0"/></radialGradient>
       <clipPath id="as-win-${uid}"><rect x="12" y="10" width="30" height="30" rx="1.5"/></clipPath>
@@ -1649,7 +1649,7 @@ const SCENE_STYLE = `
   .banner { position: relative; overflow: hidden; height: var(--as-banner-h, 90px); color: #2b2a33; background: #f4ede3;
             --as-ground-h: 10px; --as-scene-w: calc((var(--as-banner-h, 90px) - var(--as-ground-h)) * 2.5); }
   .banner.night { color: #fff; background: #2a2f3d; }
-  .as-scene { position: absolute; right: 0; bottom: var(--as-ground-h); height: calc(100% - var(--as-ground-h)); width: min(var(--as-scene-w), 62%); overflow: hidden; }
+  .as-scene { position: absolute; right: 0; bottom: var(--as-ground-h); height: calc(100% - var(--as-ground-h)); width: min(var(--as-scene-w), 62%, 100cqw - 250px); overflow: hidden; }
   .as-ground { position: absolute; left: 0; right: 0; bottom: 0; height: var(--as-ground-h);
                background: repeating-linear-gradient(90deg, #c99a6b 0 38px, #b98a5c 38px 40px); box-shadow: inset 0 2px 0 #a97c50; }
   .night .as-ground { background: repeating-linear-gradient(90deg, #4a3a2c 0 38px, #3e3024 38px 40px); box-shadow: inset 0 2px 0 #5a4634; }
@@ -1713,7 +1713,7 @@ const SCENE_STYLE = `
 const BASE_STYLE = `
   :host { --ac-accent: #7e57c2; --ac-ok: var(--success-color, #43a047); --ac-warn: var(--warning-color, #ffa600);
           --ac-crit: var(--error-color, #db4437); --ac-idle: var(--disabled-text-color, #9e9e9e); --ac-active: var(--info-color, #039be5); }
-  ha-card { overflow: hidden; container-type: inline-size; }
+  ha-card { overflow: hidden; container: as-card / inline-size; }
   /* A size container has no width of its own: this zero-height grid gives the card a natural width without a minimum. */
   :host { display: block; min-width: 0; --ac-natural-width: 400px; }
   :host::before { content: ""; display: grid; grid-template-columns: minmax(0, var(--ac-natural-width)); height: 0; }
@@ -1728,7 +1728,7 @@ const BASE_STYLE = `
   .header:has(.sub) > .pill { margin-bottom: 14.4px; }
   .header:has(.sub) > .hbtn { margin-bottom: 14.4px; }
   .titles { flex: 1 1 0; min-width: 5ch; }
-  :host([hide-title]) .titles > .name, :host([hide-subtitle]) .titles > .sub { display: none; }
+  :host([hide-title]) .titles .name, :host([hide-subtitle]) .titles > .sub { display: none; }
   .name { font-size: 16px; font-weight: 500; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .sub { font-size: 12px; color: var(--secondary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   /* The badge in the color of the status, like the pill: accent when ready, red listening, blue thinking, green speaking,
@@ -1809,7 +1809,7 @@ const BASE_STYLE = `
   .tool .icon { width: 12px; height: 12px; }
   .warning { padding: 10px 12px; border-radius: 10px; font-size: 13px; --c: var(--ac-warn); color: color-mix(in srgb, var(--c) 50%, var(--primary-text-color));
              background: color-mix(in srgb, var(--c) 12%, transparent); border: 1px solid color-mix(in srgb, var(--c) 35%, transparent); }
-  @container (max-width: 260px) {
+  @container as-card (max-width: 260px) {
     .pill { padding: 4px; flex: none; }
     .pill-text { display: none; }
     .header { gap: 6px; }
@@ -1851,9 +1851,13 @@ const MINI_STYLE = `
 // The illustrated header's layout: the round icon, the title, the status and the subtitle on the room's wall at the
 // left, the scene at the right (at most 62 % of the card), the buttons on frosted circles at the top right.
 const BANNER_STYLE = `
-  .htext { position: absolute; z-index: 1; left: 12px; top: 0; bottom: var(--as-ground-h); right: calc(min(var(--as-scene-w), 62%) + 4px);
+  .htext { position: absolute; z-index: 1; left: 12px; top: 0; bottom: var(--as-ground-h); right: calc(min(var(--as-scene-w), 62%, 100cqw - 250px) + 4px);
            display: flex; align-items: center; gap: 10px; min-width: 0; }
-  .htext .titles { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+  .htext .titles { container: as-titles / inline-size; align-self: stretch; display: grid; grid-template-columns: minmax(0, 1fr); align-content: center; row-gap: 1px; min-width: 0; flex: 1 1 0; }
+  /* The status pill right after the title, centred on it, in the icon's color; the title ellipsises first and keeps
+     4 characters. A narrow card puts the pill on its own line under the subtitle, and keeps only its dot below 200 px. */
+  .banner .tline { display: flex; align-items: center; gap: 8px; min-width: 0; }
+  .banner .tline .name { flex: 0 100 auto; min-width: 5ch; }
   .banner .name { font-size: 16px; font-weight: 500; }
   .banner .badge { position: relative; background: rgba(255,255,255,.62); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 22%, transparent); }
   .banner.night .badge { background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); }
@@ -1863,19 +1867,34 @@ const BANNER_STYLE = `
   .blogo { position: absolute; right: -4px; bottom: -4px; width: 18px; height: 18px; border-radius: 5px; padding: 2px; box-sizing: border-box;
            display: grid; place-items: center; background: #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.12), 0 1px 3px rgba(0,0,0,.18); }
   .blogo img { width: 100%; height: 100%; object-fit: contain; }
-  /* The status, as a second line: its dot in the state's color. */
-  .banner .pill { background: none; padding: 0; border-radius: 0; font-size: 13px; font-weight: 400; max-width: 100%; color: #5a5560; }
-  .banner.night .pill { color: rgba(255,255,255,.82); }
+  .banner .pill { flex: 0 1 auto; gap: 4px; padding: 1px 8px; max-width: calc(100% - 52px);
+                  background: color-mix(in srgb, var(--c) 18%, rgba(255,255,255,.78)); color: color-mix(in srgb, var(--c) 45%, #0d2a45); }
+  .banner.night .pill { background: color-mix(in srgb, var(--c) 30%, rgba(8,18,38,.55)); color: color-mix(in srgb, var(--c) 35%, #ffffff); }
   .banner .pill .dot { width: 7px; height: 7px; }
   .banner .sub { color: #77707a; }
   .banner.night .sub { color: rgba(255,255,255,.62); }
-  .hbtns { position: absolute; z-index: 2; top: 6px; right: 6px; display: flex; gap: 4px; }
-  .banner .hbtn { margin: 0; color: #3a3640; background: rgba(255,255,255,.62); border-color: rgba(0,0,0,.08); }
-  .banner.night .hbtn { color: #fff; background: rgba(10,14,28,.45); border-color: rgba(255,255,255,.14); }
+  /* The header buttons on 24 px glass discs on the banner's top line: the detail button in the top-right corner, the
+     new conversation button at its left; the scene keeps clear of them. */
+  .hbtns { position: absolute; z-index: 2; top: 5px; right: 5px; display: flex; gap: 4px; }
+  .banner .hbtn { margin: 0; width: 24px; height: 24px; border: 0; color: #33506b; background: rgba(255,255,255,.55);
+                  box-shadow: inset 0 0 0 1px rgba(255,255,255,.7); backdrop-filter: blur(4px); }
+  .banner.night .hbtn { color: #fff; background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.2); }
+  .banner .hbtn:hover { background: rgba(255,255,255,.75); }
+  .banner.night .hbtn:hover { background: rgba(255,255,255,.22); }
+  .banner .hbtn .icon { width: 16px; height: 16px; }
   .banner .hbtn + .hbtn { margin-left: 0; }
+  .banner.has-btns .as-scene { right: 30px; }
+  .banner.has-btns .htext { right: calc(min(var(--as-scene-w), 62%, 100cqw - 250px) + 34px); }
   /* Narrow card: no room for the scene beside the text, the room's wall and floor alone stay. */
-  @container (max-width: 300px) { .as-scene { display: none; } .htext { right: 40px; } }
-  @container (max-width: 260px) { .banner .pill { padding: 0; } .banner .pill-text { display: block; } }
+  @container (max-width: 300px) { .as-scene { display: none; } .htext, .banner.has-btns .htext { right: 40px; } .banner.btns-2 .htext { right: 64px; } }
+  /* Not enough room beside the title (a narrow card, or the scene taking its share): the pill on its own line under
+     the subtitle; below 200 px, its dot alone. */
+  @container as-titles (max-width: 230px) {
+    .banner .tline { display: contents; }
+    .banner .pill { grid-row: 3; justify-self: start; max-width: 100%; margin-top: 2px; }
+  }
+  @container as-card (max-width: 260px) { .banner .pill { padding: 1px 8px; } .banner .pill-text { display: block; } }
+  @container as-card (max-width: 200px) { .banner .pill { padding: 4px; } .banner .pill-text { display: none; } }
 `;
 
 // Element names of Home Assistant dialogs (more-info opened from the card, among others).
@@ -2166,8 +2185,8 @@ class AssistCard extends HTMLElement {
     if (this._illustrated()) {
       const night = isNight(this._hass, this._config) ? " night" : "";
       const buttons = newChat + this._zoomButton();
-      return `<div class="banner ${cls}${night}">${assistScene(this._uid, SCENE_STATES[key] || "idle")}
-        <div class="htext">${this._badge(cls)}<div class="titles">${name}${pill}${sub ? `<div class="sub">${sub}</div>` : ""}</div></div>
+      return `<div class="banner ${cls}${night}${buttons ? " has-btns" : ""}${newChat && this._zoomButton() ? " btns-2" : ""}">${assistScene(this._uid, SCENE_STATES[key] || "idle")}
+        <div class="htext">${this._badge(cls)}<div class="titles"><div class="tline">${name}${pill}</div>${sub ? `<div class="sub">${sub}</div>` : ""}</div></div>
         ${buttons ? `<div class="hbtns">${buttons}</div>` : ""}
       </div>`;
     }
