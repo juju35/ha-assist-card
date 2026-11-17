@@ -58,6 +58,11 @@ const STRINGS = {
     height: "Chat height",
     language: "Language",
     lang_auto: "Automatic",
+    illustration: "Animated illustration",
+    illustration_theme: "Illustration theme",
+    theme_auto: "Automatic (sun)",
+    theme_day: "Day",
+    theme_night: "Night",
     zoom: "Detail button",
     zoom_helper: "Button at the top right that switches the mini card to the full chat and back",
     zoom_in: "Show the full chat",
@@ -110,6 +115,11 @@ const STRINGS = {
     height: "Hauteur de la conversation",
     language: "Langue",
     lang_auto: "Automatique",
+    illustration: "Illustration animée",
+    illustration_theme: "Thème de l’illustration",
+    theme_auto: "Automatique (soleil)",
+    theme_day: "Jour",
+    theme_night: "Nuit",
     zoom: "Bouton détail",
     zoom_helper: "Bouton en haut à droite qui bascule la mini-carte vers la conversation complète et inversement",
     zoom_in: "Afficher la conversation complète",
@@ -162,6 +172,11 @@ const STRINGS = {
     height: "Höhe des Gesprächs",
     language: "Sprache",
     lang_auto: "Automatisch",
+    illustration: "Animierte Illustration",
+    illustration_theme: "Thema der Illustration",
+    theme_auto: "Automatisch (Sonne)",
+    theme_day: "Tag",
+    theme_night: "Nacht",
     zoom: "Detailschaltfläche",
     zoom_helper: "Schaltfläche oben rechts, die die Mini-Karte zum vollständigen Gespräch umschaltet und zurück",
     zoom_in: "Vollständiges Gespräch anzeigen",
@@ -214,6 +229,11 @@ const STRINGS = {
     height: "Altura de la conversación",
     language: "Idioma",
     lang_auto: "Automático",
+    illustration: "Ilustración animada",
+    illustration_theme: "Tema de la ilustración",
+    theme_auto: "Automático (sol)",
+    theme_day: "Día",
+    theme_night: "Noche",
     zoom: "Botón de detalle",
     zoom_helper: "Botón arriba a la derecha que cambia la minitarjeta a la conversación completa y viceversa",
     zoom_in: "Mostrar la conversación completa",
@@ -266,6 +286,11 @@ const STRINGS = {
     height: "Altezza della conversazione",
     language: "Lingua",
     lang_auto: "Automatica",
+    illustration: "Illustrazione animata",
+    illustration_theme: "Tema dell’illustrazione",
+    theme_auto: "Automatico (sole)",
+    theme_day: "Giorno",
+    theme_night: "Notte",
     zoom: "Pulsante dettagli",
     zoom_helper: "Pulsante in alto a destra che passa dalla mini scheda alla conversazione completa e viceversa",
     zoom_in: "Mostra la conversazione completa",
@@ -318,6 +343,11 @@ const STRINGS = {
     height: "Hoogte van het gesprek",
     language: "Taal",
     lang_auto: "Automatisch",
+    illustration: "Geanimeerde illustratie",
+    illustration_theme: "Thema van de illustratie",
+    theme_auto: "Automatisch (zon)",
+    theme_day: "Dag",
+    theme_night: "Nacht",
     zoom: "Detailknop",
     zoom_helper: "Knop rechtsboven die de minikaart omschakelt naar het volledige gesprek en terug",
     zoom_in: "Volledig gesprek tonen",
@@ -370,6 +400,11 @@ const STRINGS = {
     height: "Altura da conversa",
     language: "Idioma",
     lang_auto: "Automático",
+    illustration: "Ilustração animada",
+    illustration_theme: "Tema da ilustração",
+    theme_auto: "Automático (sol)",
+    theme_day: "Dia",
+    theme_night: "Noite",
     zoom: "Botão de detalhe",
     zoom_helper: "Botão no canto superior direito que alterna o minicartão para a conversa completa e vice-versa",
     zoom_in: "Mostrar a conversa completa",
@@ -422,6 +457,11 @@ const STRINGS = {
     height: "Wysokość rozmowy",
     language: "Język",
     lang_auto: "Automatycznie",
+    illustration: "Animowana ilustracja",
+    illustration_theme: "Motyw ilustracji",
+    theme_auto: "Automatycznie (słońce)",
+    theme_day: "Dzień",
+    theme_night: "Noc",
     zoom: "Przycisk szczegółów",
     zoom_helper: "Przycisk w prawym górnym rogu przełączający mini kartę na pełną rozmowę i z powrotem",
     zoom_in: "Pokaż pełną rozmowę",
@@ -474,6 +514,11 @@ const STRINGS = {
     height: "Висина разговора",
     language: "Језик",
     lang_auto: "Аутоматски",
+    illustration: "Анимирана илустрација",
+    illustration_theme: "Тема илустрације",
+    theme_auto: "Аутоматски (сунце)",
+    theme_day: "Дан",
+    theme_night: "Ноћ",
     zoom: "Дугме за детаље",
     zoom_helper: "Дугме горе десно које пребацује мини картицу на цео разговор и назад",
     zoom_in: "Прикажи цео разговор",
@@ -526,6 +571,11 @@ const STRINGS = {
     height: "Visina razgovora",
     language: "Jezik",
     lang_auto: "Automatski",
+    illustration: "Animirana ilustracija",
+    illustration_theme: "Tema ilustracije",
+    theme_auto: "Automatski (sunce)",
+    theme_day: "Dan",
+    theme_night: "Noć",
     zoom: "Dugme za detalje",
     zoom_helper: "Dugme gore desno koje prebacuje mini karticu na ceo razgovor i nazad",
     zoom_in: "Prikaži ceo razgovor",
@@ -578,6 +628,11 @@ const STRINGS = {
     height: "Înălțimea conversației",
     language: "Limbă",
     lang_auto: "Automat",
+    illustration: "Ilustrație animată",
+    illustration_theme: "Tema ilustrației",
+    theme_auto: "Automat (soare)",
+    theme_day: "Zi",
+    theme_night: "Noapte",
     zoom: "Buton detalii",
     zoom_helper: "Buton din dreapta sus care comută mini-cardul la conversația completă și înapoi",
     zoom_in: "Afișează conversația completă",
@@ -630,6 +685,11 @@ const STRINGS = {
     height: "Samtalens højde",
     language: "Sprog",
     lang_auto: "Automatisk",
+    illustration: "Animeret illustration",
+    illustration_theme: "Illustrationens tema",
+    theme_auto: "Automatisk (sol)",
+    theme_day: "Dag",
+    theme_night: "Nat",
     zoom: "Detaljeknap",
     zoom_helper: "Knap øverst til højre, der skifter minikortet til hele samtalen og tilbage",
     zoom_in: "Vis hele samtalen",
@@ -682,6 +742,11 @@ const STRINGS = {
     height: "Konversationens höjd",
     language: "Språk",
     lang_auto: "Automatiskt",
+    illustration: "Animerad illustration",
+    illustration_theme: "Illustrationens tema",
+    theme_auto: "Automatiskt (sol)",
+    theme_day: "Dag",
+    theme_night: "Natt",
     zoom: "Detaljknapp",
     zoom_helper: "Knapp uppe till höger som växlar minikortet till hela konversationen och tillbaka",
     zoom_in: "Visa hela konversationen",
@@ -734,6 +799,11 @@ const STRINGS = {
     height: "Височина на разговора",
     language: "Език",
     lang_auto: "Автоматично",
+    illustration: "Анимирана илюстрация",
+    illustration_theme: "Тема на илюстрацията",
+    theme_auto: "Автоматично (слънце)",
+    theme_day: "Ден",
+    theme_night: "Нощ",
     zoom: "Бутон за детайли",
     zoom_helper: "Бутон горе вдясно, който превключва мини картата към целия разговор и обратно",
     zoom_in: "Покажи целия разговор",
@@ -786,6 +856,11 @@ const STRINGS = {
     height: "Высота разговора",
     language: "Язык",
     lang_auto: "Автоматически",
+    illustration: "Анимированная иллюстрация",
+    illustration_theme: "Тема иллюстрации",
+    theme_auto: "Автоматически (солнце)",
+    theme_day: "День",
+    theme_night: "Ночь",
     zoom: "Кнопка подробностей",
     zoom_helper: "Кнопка вверху справа, переключающая мини-карточку на полный разговор и обратно",
     zoom_in: "Показать полный разговор",
@@ -838,6 +913,11 @@ const STRINGS = {
     height: "Висота розмови",
     language: "Мова",
     lang_auto: "Автоматично",
+    illustration: "Анімована ілюстрація",
+    illustration_theme: "Тема ілюстрації",
+    theme_auto: "Автоматично (сонце)",
+    theme_day: "День",
+    theme_night: "Ніч",
     zoom: "Кнопка подробиць",
     zoom_helper: "Кнопка вгорі праворуч, що перемикає міні-картку на повну розмову і назад",
     zoom_in: "Показати повну розмову",
@@ -890,6 +970,11 @@ const STRINGS = {
     height: "A beszélgetés magassága",
     language: "Nyelv",
     lang_auto: "Automatikus",
+    illustration: "Animált illusztráció",
+    illustration_theme: "Az illusztráció témája",
+    theme_auto: "Automatikus (nap)",
+    theme_day: "Nappal",
+    theme_night: "Éjszaka",
     zoom: "Részletek gomb",
     zoom_helper: "Jobb felső gomb, amely a mini kártyát a teljes beszélgetésre váltja és vissza",
     zoom_in: "A teljes beszélgetés megjelenítése",
@@ -942,6 +1027,11 @@ const STRINGS = {
     height: "Výška konverzácie",
     language: "Jazyk",
     lang_auto: "Automaticky",
+    illustration: "Animovaná ilustrácia",
+    illustration_theme: "Téma ilustrácie",
+    theme_auto: "Automaticky (slnko)",
+    theme_day: "Deň",
+    theme_night: "Noc",
     zoom: "Tlačidlo detailu",
     zoom_helper: "Tlačidlo vpravo hore, ktoré prepne mini kartu na celú konverzáciu a späť",
     zoom_in: "Zobraziť celú konverzáciu",
@@ -994,6 +1084,11 @@ const STRINGS = {
     height: "Výška konverzace",
     language: "Jazyk",
     lang_auto: "Automaticky",
+    illustration: "Animovaná ilustrace",
+    illustration_theme: "Motiv ilustrace",
+    theme_auto: "Automaticky (slunce)",
+    theme_day: "Den",
+    theme_night: "Noc",
     zoom: "Tlačítko detailu",
     zoom_helper: "Tlačítko vpravo nahoře, které přepne mini kartu na celou konverzaci a zpět",
     zoom_in: "Zobrazit celou konverzaci",
@@ -1046,6 +1141,11 @@ const STRINGS = {
     height: "Višina pogovora",
     language: "Jezik",
     lang_auto: "Samodejno",
+    illustration: "Animirana ilustracija",
+    illustration_theme: "Tema ilustracije",
+    theme_auto: "Samodejno (sonce)",
+    theme_day: "Dan",
+    theme_night: "Noč",
     zoom: "Gumb za podrobnosti",
     zoom_helper: "Gumb zgoraj desno, ki preklopi mini kartico na celoten pogovor in nazaj",
     zoom_in: "Prikaži celoten pogovor",
@@ -1098,6 +1198,11 @@ const STRINGS = {
     height: "Sarunas augstums",
     language: "Valoda",
     lang_auto: "Automātiski",
+    illustration: "Animēta ilustrācija",
+    illustration_theme: "Ilustrācijas motīvs",
+    theme_auto: "Automātiski (saule)",
+    theme_day: "Diena",
+    theme_night: "Nakts",
     zoom: "Detaļu poga",
     zoom_helper: "Poga augšējā labajā stūrī, kas pārslēdz mini karti uz pilnu sarunu un atpakaļ",
     zoom_in: "Rādīt pilnu sarunu",
@@ -1150,6 +1255,11 @@ const STRINGS = {
     height: "Ύψος συνομιλίας",
     language: "Γλώσσα",
     lang_auto: "Αυτόματα",
+    illustration: "Κινούμενη εικονογράφηση",
+    illustration_theme: "Θέμα εικονογράφησης",
+    theme_auto: "Αυτόματα (ήλιος)",
+    theme_day: "Ημέρα",
+    theme_night: "Νύχτα",
     zoom: "Κουμπί λεπτομερειών",
     zoom_helper: "Κουμπί πάνω δεξιά που αλλάζει τη μίνι κάρτα στην πλήρη συνομιλία και πίσω",
     zoom_in: "Εμφάνιση πλήρους συνομιλίας",
@@ -1180,7 +1290,7 @@ const ICONS = {
 };
 
 const SUGGESTION_KEYS = ["sugg_lights_on", "sugg_lights_off", "sugg_temperature", "sugg_open"];
-const DEFAULTS = { pipeline: "preferred", height: 360 };
+const DEFAULTS = { pipeline: "preferred", height: 360, illustration_theme: "auto" };
 // The built-in agent understands set sentences only: a request prefixed with its area would not match any.
 const BUILTIN_AGENTS = new Set(["homeassistant", "conversation.home_assistant"]);
 // A run that ends neither with an answer nor an error (connection lost) frees the card after this long.
@@ -1457,6 +1567,146 @@ class VoiceRecorder {
 }
 
 // ---------------------------------------------------------------------------
+// The illustrated header: a living room at the right of the banner (window, sofa, sideboard) with a smart speaker
+// on the sideboard, drawn in a 200 × 80 picture whose bottom (y 80) sits on the 10 px parquet strip that runs
+// under the whole banner. The speaker shows the state: its light ring in the state's color, sound waves coming in
+// while it listens, going out while it speaks, a speech bubble with the dots while it thinks, a « ! » on an error.
+// ---------------------------------------------------------------------------
+
+// The scene of each status of the card (_status()).
+const SCENE_STATES = { ready: "idle", listening: "listening", transcribing: "thinking", thinking: "thinking", speaking: "speaking", error: "error", unavailable: "off" };
+
+// Night picture: forced by illustration_theme, else the sun below the horizon, else Home Assistant's dark mode.
+const isNight = (hass, config) => {
+  const theme = config?.illustration_theme;
+  if (theme === "night") return true;
+  if (theme === "day") return false;
+  const sun = hass?.states?.["sun.sun"]?.state;
+  if (sun === "below_horizon" || sun === "above_horizon") return sun === "below_horizon";
+  return !!hass?.themes?.darkMode;
+};
+
+// Three sound arcs beside the speaker: on its left (side -1) or its right (side 1).
+const waves = (side) =>
+  [0, 1, 2]
+    .map((i) => {
+      const x = 170 + side * (13 + i * 5.5);
+      const h = 6 + i * 3.2;
+      return `<path class="as-wave w${i} ${side < 0 ? "l" : "r"}" d="M${x} ${46 - h}Q${x + side * (2.6 + i)} 46 ${x} ${46 + h}"/>`;
+    })
+    .join("");
+
+// The picture. `uid` keeps the ids of each card's gradients apart on a page with several cards.
+const assistScene = (uid, state) => {
+  const bubble = {
+    listening: `<g class="as-bars">${[0, 1, 2, 3, 4].map((i) => `<rect class="b${i}" x="${125.5 + i * 5}" y="12" width="2.4" height="10" rx="1.2"/>`).join("")}</g>`,
+    thinking: `<g class="as-dots"><circle class="d1" cx="129" cy="17" r="2"/><circle class="d2" cx="137" cy="17" r="2"/><circle class="d3" cx="145" cy="17" r="2"/></g>`,
+    speaking: `<g class="as-lines"><rect class="l1" x="124" y="12.5" width="26" height="2.2" rx="1.1"/><rect class="l2" x="124" y="18.3" width="18" height="2.2" rx="1.1"/></g>`,
+    error: `<g class="as-bang"><rect x="135.8" y="10.5" width="2.4" height="8" rx="1.2"/><circle cx="137" cy="22" r="1.4"/></g>`,
+  }[state];
+  const sound = state === "listening" ? `<g class="as-in">${waves(-1)}</g>` : state === "speaking" ? `<g class="as-out">${waves(-1)}${waves(1)}</g>` : "";
+  return `<div class="as-ground" aria-hidden="true"></div><svg class="as-scene ${state}" viewBox="0 0 200 80" preserveAspectRatio="xMaxYMax meet" aria-hidden="true" focusable="false">
+    <defs>
+      <radialGradient id="as-glow-${uid}"><stop offset="0" stop-color="var(--as-ring)" stop-opacity=".55"/><stop offset="1" stop-color="var(--as-ring)" stop-opacity="0"/></radialGradient>
+      <clipPath id="as-win-${uid}"><rect x="12" y="10" width="30" height="30" rx="1.5"/></clipPath>
+    </defs>
+    <g class="as-window">
+      <rect class="as-pane" x="12" y="10" width="30" height="30" rx="1.5"/>
+      <g clip-path="url(#as-win-${uid})">
+        <path class="as-cloud" d="M17 25a3 3 0 0 1 4.6-2.6 3.8 3.8 0 0 1 7.2 1 2.3 2.3 0 0 1 .4 4.6H18.6A2.3 2.3 0 0 1 17 25Z"/>
+        <path class="as-moon" d="M33 15.5a4.2 4.2 0 1 0 3.7 6.3 3.4 3.4 0 1 1-3.7-6.3Z"/>
+        <circle class="as-star" cx="19" cy="16" r=".7"/><circle class="as-star" cx="25" cy="31" r=".6"/><circle class="as-star" cx="38" cy="33" r=".5"/>
+      </g>
+      <rect class="as-frame" x="12" y="10" width="30" height="30" rx="1.5"/><path class="as-frame" d="M27 10V40M12 25H42"/>
+      <rect class="as-sill" x="9.5" y="40" width="35" height="2.4" rx="1"/>
+    </g>
+    <g class="as-sofa">
+      <rect class="as-sofa-back" x="58" y="47" width="68" height="15" rx="5"/>
+      <rect class="as-sofa-seat" x="56" y="58" width="72" height="14" rx="4"/>
+      <rect class="as-sofa-arm" x="52" y="52" width="11" height="22" rx="4.5"/><rect class="as-sofa-arm" x="121" y="52" width="11" height="22" rx="4.5"/>
+      <rect class="as-cushion" x="66" y="51" width="16" height="10" rx="4" transform="rotate(-8 74 56)"/>
+      <path class="as-leg" d="M57 74v6M127 74v6"/>
+    </g>
+    <g class="as-sideboard">
+      <rect class="as-board" x="146" y="62" width="48" height="16" rx="1.6"/><rect class="as-top" x="144.5" y="60.4" width="51" height="2.6" rx="1"/>
+      <path class="as-door" d="M170 64.5v11"/><circle class="as-knob" cx="167" cy="70" r=".8"/><circle class="as-knob" cx="173" cy="70" r=".8"/>
+      <path class="as-leg" d="M149 78v2M191 78v2"/>
+    </g>
+    <circle class="as-glow" cx="170" cy="36" r="17" fill="url(#as-glow-${uid})"/>
+    ${sound}
+    <g class="as-speaker">
+      <rect class="as-body" x="161" y="35" width="18" height="25.4" rx="7"/>
+      <path class="as-mesh" d="M163.4 44H176.6M163 48.5H177M163.4 53H176.6"/>
+      <ellipse class="as-cap" cx="170" cy="35.6" rx="9" ry="2.8"/>
+      <ellipse class="as-ring" cx="170" cy="35.6" rx="6.4" ry="1.8"/>
+    </g>
+    ${bubble ? `<g transform="translate(-24 0)"><g class="as-bubble"><rect x="118" y="6" width="38" height="22" rx="11"/><path d="M147 27l6 6 .4-7.4z"/>${bubble}</g></g>` : ""}
+  </svg>`;
+};
+
+// The scene's colors and animations, day and night (only in the card's styles when the illustration is shown).
+const SCENE_STYLE = `
+  .banner { position: relative; overflow: hidden; height: var(--as-banner-h, 90px); color: #2b2a33; background: #f4ede3;
+            --as-ground-h: 10px; --as-scene-w: calc((var(--as-banner-h, 90px) - var(--as-ground-h)) * 2.5); }
+  .banner.night { color: #fff; background: #2a2f3d; }
+  .as-scene { position: absolute; right: 0; bottom: var(--as-ground-h); height: calc(100% - var(--as-ground-h)); width: min(var(--as-scene-w), 62%); overflow: hidden; }
+  .as-ground { position: absolute; left: 0; right: 0; bottom: 0; height: var(--as-ground-h);
+               background: repeating-linear-gradient(90deg, #c99a6b 0 38px, #b98a5c 38px 40px); box-shadow: inset 0 2px 0 #a97c50; }
+  .night .as-ground { background: repeating-linear-gradient(90deg, #4a3a2c 0 38px, #3e3024 38px 40px); box-shadow: inset 0 2px 0 #5a4634; }
+  .as-pane { fill: #bfe0f7; } .night .as-pane { fill: #1b2f52; }
+  .as-frame { fill: none; stroke: #fff; stroke-width: 1.6; } .night .as-frame { stroke: #4a5568; }
+  .as-sill { fill: #e4d9c8; } .night .as-sill { fill: #3f4757; }
+  .as-cloud { fill: #fff; opacity: .95; animation: as-drift 6s ease-in-out infinite alternate; }
+  .as-moon, .as-star { fill: #f4f1dc; display: none; }
+  .night .as-moon, .night .as-star { display: inline; } .night .as-cloud { display: none; }
+  .as-sofa-back, .as-sofa-arm { fill: #8f88db; } .as-sofa-seat { fill: #9d97e0; } .as-cushion { fill: #f2c46d; }
+  .night .as-sofa-back, .night .as-sofa-arm { fill: #433d68; } .night .as-sofa-seat { fill: #4a4470; } .night .as-cushion { fill: #8a6f3e; }
+  .as-leg { stroke: #6e5a45; stroke-width: 1.6; stroke-linecap: round; } .night .as-leg { stroke: #2a2420; }
+  .as-board { fill: #c9b79c; } .as-top { fill: #b49f80; } .as-door { stroke: #b19c7d; stroke-width: .7; } .as-knob { fill: #8a7658; }
+  .night .as-board { fill: #3c4558; } .night .as-top { fill: #4a5468; } .night .as-door { stroke: #2f3746; } .night .as-knob { fill: #6c7890; }
+  /* The speaker: a dark fabric cylinder by day, a lighter one at night so that it stays visible on the dark room. */
+  .as-body { fill: #2f3540; } .as-cap { fill: #444c5a; } .as-mesh { stroke: #404754; stroke-width: .6; stroke-linecap: round; }
+  .night .as-body { fill: #5a6476; } .night .as-cap { fill: #707b8f; } .night .as-mesh { stroke: #6b7588; }
+  .as-scene { --as-ring: var(--c, var(--ac-accent)); }
+  .as-ring { fill: none; stroke: var(--as-ring); stroke-width: 1.4; }
+  .as-glow { opacity: .6; transform-box: fill-box; transform-origin: center; }
+  .idle .as-glow { animation: as-breathe 3.2s ease-in-out infinite; }
+  .off .as-glow { display: none; } .off .as-ring { stroke: #8b93a1; opacity: .7; } .off .as-speaker { opacity: .75; }
+  .listening .as-glow, .speaking .as-glow { opacity: .9; animation: as-breathe 1.2s ease-in-out infinite; }
+  .thinking .as-ring { stroke-dasharray: 6 4; animation: as-spin 1s linear infinite; }
+  .as-wave { fill: none; stroke: var(--as-ring); stroke-width: 1.5; stroke-linecap: round; opacity: 0; transform-box: fill-box; transform-origin: center; }
+  .as-out .as-wave.l { animation: as-out-l 1.5s ease-out infinite; } .as-out .as-wave.r { animation: as-out-r 1.5s ease-out infinite; }
+  .as-in .as-wave { animation: as-in 1.5s ease-in infinite; }
+  .as-wave.w1 { animation-delay: -.5s !important; } .as-wave.w2 { animation-delay: -1s !important; }
+  .as-bubble > rect, .as-bubble > path { fill: #ece9ff; } .night .as-bubble > rect, .night .as-bubble > path { fill: #3a3f60; }
+  .as-bubble { animation: as-pop .35s ease-out both; transform-box: fill-box; transform-origin: 80% 100%; }
+  .as-dots circle { fill: #7f77dd; animation: as-bounce 1.2s ease-in-out infinite; transform-box: fill-box; }
+  .night .as-dots circle { fill: #a9a3ff; }
+  .as-dots .d2 { animation-delay: .15s; } .as-dots .d3 { animation-delay: .3s; }
+  .as-bars rect { fill: var(--as-ring); transform-box: fill-box; transform-origin: center; animation: as-bar .9s ease-in-out infinite; }
+  .as-bars .b1 { animation-delay: -.3s; } .as-bars .b2 { animation-delay: -.6s; } .as-bars .b3 { animation-delay: -.15s; } .as-bars .b4 { animation-delay: -.45s; }
+  .as-lines rect { fill: var(--as-ring); opacity: .85; transform-box: fill-box; transform-origin: left center; animation: as-type 2.4s ease-out infinite; }
+  .as-lines .l2 { animation-delay: .4s; }
+  .as-bang * { fill: var(--as-ring); }
+  .error .as-speaker { animation: as-shake 2.4s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
+  @keyframes as-drift { to { transform: translateX(3px); } }
+  @keyframes as-breathe { 0%, 100% { transform: scale(.85); opacity: .45; } 50% { transform: scale(1.1); opacity: .95; } }
+  @keyframes as-spin { to { stroke-dashoffset: -20; } }
+  @keyframes as-out-l { 0% { opacity: 0; transform: translateX(0); } 20% { opacity: 1; } 100% { opacity: 0; transform: translateX(-4px); } }
+  @keyframes as-out-r { 0% { opacity: 0; transform: translateX(0); } 20% { opacity: 1; } 100% { opacity: 0; transform: translateX(4px); } }
+  @keyframes as-in { 0% { opacity: 0; transform: translateX(-5px); } 40% { opacity: 1; } 100% { opacity: 0; transform: translateX(2px); } }
+  @keyframes as-pop { from { transform: scale(.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  @keyframes as-bounce { 0%, 60%, 100% { transform: translateY(0); opacity: .5; } 30% { transform: translateY(-2.5px); opacity: 1; } }
+  @keyframes as-bar { 0%, 100% { transform: scaleY(.3); } 50% { transform: scaleY(1); } }
+  @keyframes as-type { 0% { transform: scaleX(0); } 40%, 85% { transform: scaleX(1); } 100% { transform: scaleX(1); opacity: 0; } }
+  @keyframes as-shake { 0%, 80%, 100% { transform: rotate(0); } 84% { transform: rotate(-4deg); } 88% { transform: rotate(4deg); } 92% { transform: rotate(-2deg); } 96% { transform: rotate(2deg); } }
+  @media (prefers-reduced-motion: reduce) {
+    .as-scene *, .as-scene { animation: none !important; }
+    .as-wave { opacity: .8; } .as-bubble { opacity: 1; }
+  }
+`;
+
+// ---------------------------------------------------------------------------
 // Styles
 // ---------------------------------------------------------------------------
 
@@ -1481,11 +1731,12 @@ const BASE_STYLE = `
   :host([hide-title]) .titles > .name, :host([hide-subtitle]) .titles > .sub { display: none; }
   .name { font-size: 16px; font-weight: 500; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .sub { font-size: 12px; color: var(--secondary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  /* The badge keeps the accent color whatever the state: the status pill tells the state. */
+  /* The badge in the color of the status, like the pill: accent when ready, red listening, blue thinking, green speaking,
+     amber on an error, grey when unavailable. */
   .badge { display: flex; flex: none; width: 40px; height: 40px; border-radius: 50%; align-items: center; justify-content: center;
-           background: color-mix(in srgb, var(--ac-accent) 16%, transparent); }
+           background: color-mix(in srgb, var(--c) 16%, transparent); transition: background-color .2s ease; }
   .badge.clickable { cursor: pointer; }
-  .badge .icon.type { width: 24px; height: 24px; fill: color-mix(in srgb, var(--ac-accent) 60%, var(--primary-text-color)); }
+  .badge .icon.type { width: 24px; height: 24px; fill: color-mix(in srgb, var(--c) 60%, var(--primary-text-color)); }
   /* The agent's integration logo, small, before its name in the subtitle. */
   .sub .logo { width: 14px; height: 14px; margin-inline-end: 4px; vertical-align: -2px; border-radius: 3px; object-fit: contain; }
   .pill { display: inline-flex; align-items: center; gap: 5px; padding: 2px 9px; border-radius: 12px; font-size: 11px; font-weight: 500; white-space: nowrap;
@@ -1597,6 +1848,36 @@ const MINI_STYLE = `
   .voice + .inputbar { padding-top: 0; }
 `;
 
+// The illustrated header's layout: the round icon, the title, the status and the subtitle on the room's wall at the
+// left, the scene at the right (at most 62 % of the card), the buttons on frosted circles at the top right.
+const BANNER_STYLE = `
+  .htext { position: absolute; z-index: 1; left: 12px; top: 0; bottom: var(--as-ground-h); right: calc(min(var(--as-scene-w), 62%) + 4px);
+           display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .htext .titles { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+  .banner .name { font-size: 16px; font-weight: 500; }
+  .banner .badge { position: relative; background: rgba(255,255,255,.62); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 22%, transparent); }
+  .banner.night .badge { background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); }
+  .banner .badge .icon.type { fill: var(--c); }
+  .banner.night .badge .icon.type { fill: color-mix(in srgb, var(--c) 72%, #fff); }
+  /* The agent's integration logo on a white tile at the bottom right of the icon, readable on any theme. */
+  .blogo { position: absolute; right: -4px; bottom: -4px; width: 18px; height: 18px; border-radius: 5px; padding: 2px; box-sizing: border-box;
+           display: grid; place-items: center; background: #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.12), 0 1px 3px rgba(0,0,0,.18); }
+  .blogo img { width: 100%; height: 100%; object-fit: contain; }
+  /* The status, as a second line: its dot in the state's color. */
+  .banner .pill { background: none; padding: 0; border-radius: 0; font-size: 13px; font-weight: 400; max-width: 100%; color: #5a5560; }
+  .banner.night .pill { color: rgba(255,255,255,.82); }
+  .banner .pill .dot { width: 7px; height: 7px; }
+  .banner .sub { color: #77707a; }
+  .banner.night .sub { color: rgba(255,255,255,.62); }
+  .hbtns { position: absolute; z-index: 2; top: 6px; right: 6px; display: flex; gap: 4px; }
+  .banner .hbtn { margin: 0; color: #3a3640; background: rgba(255,255,255,.62); border-color: rgba(0,0,0,.08); }
+  .banner.night .hbtn { color: #fff; background: rgba(10,14,28,.45); border-color: rgba(255,255,255,.14); }
+  .banner .hbtn + .hbtn { margin-left: 0; }
+  /* Narrow card: no room for the scene beside the text, the room's wall and floor alone stay. */
+  @container (max-width: 300px) { .as-scene { display: none; } .htext { right: 40px; } }
+  @container (max-width: 260px) { .banner .pill { padding: 0; } .banner .pill-text { display: block; } }
+`;
+
 // Element names of Home Assistant dialogs (more-info opened from the card, among others).
 const DIALOG_TAGS = new Set(["HA-MORE-INFO-DIALOG", "HA-DIALOG", "DIALOG"]);
 const isOutside = (card, ev) => {
@@ -1642,6 +1923,9 @@ const watchOutside = (card, handler) => {
 // Cards
 // ---------------------------------------------------------------------------
 
+// Numbers the cards of a page: the ids of each card's illustration stay apart.
+let cardUid = 0;
+
 class AssistCard extends HTMLElement {
   constructor() {
     super();
@@ -1654,6 +1938,7 @@ class AssistCard extends HTMLElement {
     this._speaking = false;
     this._run = 0;
     this._stick = true;
+    this._uid = ++cardUid;
     const root = this.shadowRoot;
     root.addEventListener("click", (ev) => this._onClick(ev));
     root.addEventListener("keydown", (ev) => this._onKey(ev));
@@ -1672,7 +1957,7 @@ class AssistCard extends HTMLElement {
         const p = ev.target?.dataset?.platform;
         if (!p) return;
         BROKEN_LOGOS.add(p);
-        ev.target.remove();
+        (ev.target.parentElement?.classList?.contains("blogo") ? ev.target.parentElement : ev.target).remove();
       },
       true,
     );
@@ -1717,11 +2002,21 @@ class AssistCard extends HTMLElement {
     return this._hass;
   }
 
-  // What a render reads from hass: the language, the theme, the agent's state and registry entry, the area.
+  // What a render reads from hass: the language, the theme, the sun (the illustration's night), the agent's state and
+  // registry entry, the area.
   _deps() {
     const h = this._hass;
     const agent = this._agentId();
-    return [h.language, h.locale, h.themes?.darkMode, h.entities?.[agent], h.states?.[agent], this._config?.area && h.areas?.[this._config.area], this._pipelines];
+    return [
+      h.language,
+      h.locale,
+      h.themes?.darkMode,
+      h.states?.["sun.sun"]?.state,
+      h.entities?.[agent],
+      h.states?.[agent],
+      this._config?.area && h.areas?.[this._config.area],
+      this._pipelines,
+    ];
   }
 
   _loadPipelines() {
@@ -1824,14 +2119,15 @@ class AssistCard extends HTMLElement {
     return ["ready", "accent"];
   }
 
-  // The subtitle (HTML): the pipeline, then the agent with its integration's logo before its name.
+  // The subtitle (HTML): the pipeline, then the agent with its integration's logo before its name (on the icon instead
+  // in the illustrated header).
   _subtitle() {
     const c = this._config;
     const id = this._agentId();
     const agent = agentName(this._hass, id);
     const platform = agentPlatform(this._hass, id);
     const dark = !!this._hass.themes?.darkMode;
-    const logo = platform && !BROKEN_LOGOS.has(platform) ? `<img data-platform="${esc(platform)}" class="logo" src="${esc(brandIcon(platform, dark))}" alt="">` : "";
+    const logo = platform && !BROKEN_LOGOS.has(platform) && !this._illustrated() ? `<img data-platform="${esc(platform)}" class="logo" src="${esc(brandIcon(platform, dark))}" alt="">` : "";
     const withLogo = agent ? `${logo}${esc(agent)}` : "";
     if (c.agent_id) return withLogo;
     const p = this._pipeline();
@@ -1839,11 +2135,23 @@ class AssistCard extends HTMLElement {
     return [esc(name), agent && agent !== name ? withLogo : ""].filter(Boolean).join(" · ");
   }
 
-  _badge() {
+  _illustrated() {
+    return this._config?.illustration !== false;
+  }
+
+  // The round icon, in the color of the status: the chatbot in the classic header, the microphone in the illustrated
+  // one, with the agent's integration logo on it.
+  _badge(cls) {
     const agent = this._agentId();
     const entity = agent && this._hass.states?.[agent] ? agent : "";
     const attrs = entity ? ` clickable" role="button" tabindex="0" data-action="more" data-entity="${esc(entity)}" title="${esc(agentName(this._hass, agent))}"` : '"';
-    return `<span class="badge${attrs}>${svgIcon(ICONS.bot, "type")}</span>`;
+    if (!this._illustrated()) return `<span class="badge ${cls}${attrs}>${svgIcon(ICONS.bot, "type")}</span>`;
+    const platform = agentPlatform(this._hass, agent);
+    const logo =
+      platform && !BROKEN_LOGOS.has(platform)
+        ? `<span class="blogo"><img data-platform="${esc(platform)}" src="${esc(brandIcon(platform, false))}" alt=""></span>`
+        : "";
+    return `<span class="badge ${cls}${attrs}>${svgIcon(ICONS.mic, "type")}${logo}</span>`;
   }
 
   _header(sub, compact = false) {
@@ -1853,13 +2161,23 @@ class AssistCard extends HTMLElement {
     const newChat = fresh
       ? `<button class="hbtn" data-action="new" title="${esc(this._t("new_chat"))}" aria-label="${esc(this._t("new_chat"))}">${svgIcon(ICONS.new_chat)}</button>`
       : "";
+    const pill = `<span class="pill ${cls}" role="status" title="${esc(text)}" aria-label="${esc(text)}"><span class="dot"></span><span class="pill-text">${esc(text)}</span></span>`;
+    const name = `<div class="name">${esc(this._config.title || this._t("default_title"))}</div>`;
+    if (this._illustrated()) {
+      const night = isNight(this._hass, this._config) ? " night" : "";
+      const buttons = newChat + this._zoomButton();
+      return `<div class="banner ${cls}${night}">${assistScene(this._uid, SCENE_STATES[key] || "idle")}
+        <div class="htext">${this._badge(cls)}<div class="titles">${name}${pill}${sub ? `<div class="sub">${sub}</div>` : ""}</div></div>
+        ${buttons ? `<div class="hbtns">${buttons}</div>` : ""}
+      </div>`;
+    }
     return `<div class="header">
-        ${this._badge()}
+        ${this._badge(cls)}
         <div class="titles">
-          <div class="name">${esc(this._config.title || this._t("default_title"))}</div>
+          ${name}
           ${sub ? `<div class="sub">${sub}</div>` : ""}
         </div>
-        <span class="pill ${cls}" role="status" title="${esc(text)}" aria-label="${esc(text)}"><span class="dot"></span><span class="pill-text">${esc(text)}</span></span>
+        ${pill}
         ${newChat}${this._zoomButton()}
       </div>`;
   }
@@ -1921,7 +2239,12 @@ class AssistCard extends HTMLElement {
 
   _style() {
     const h = Math.max(160, Math.min(1200, Math.round(Number(this._config.height) || DEFAULTS.height)));
-    return `<style>${BASE_STYLE}${FULL_STYLE}:host { --ac-height: ${h}px; }</style>`;
+    return `<style>${BASE_STYLE}${FULL_STYLE}${this._bannerStyle()}:host { --ac-height: ${h}px; }</style>`;
+  }
+
+  // The illustration's styles, only when it is shown.
+  _bannerStyle() {
+    return this._illustrated() ? BANNER_STYLE + SCENE_STYLE : "";
   }
 
   _render() {
@@ -2376,7 +2699,7 @@ class AssistMiniCard extends AssistCard {
       body = `${lastQ ? `<div class="q" title="${esc(lastQ.text)}">${esc(lastQ.text)}</div>` : ""}${answer}`;
     }
     // Without a microphone (no speech-to-text in the pipeline, `voice: false`, no secure context) a text field instead.
-    return `<style>${BASE_STYLE}${MINI_STYLE}</style>
+    return `<style>${BASE_STYLE}${MINI_STYLE}${this._bannerStyle()}</style>
       <ha-card>
         ${this._header("", true)}
         <div class="voice" aria-live="polite">${mic ? this._micButton(true) : ""}${body}${problem ? "" : this._chips()}</div>
@@ -2429,6 +2752,7 @@ class AssistCardEditor extends HTMLElement {
   // [name, default]
   static get toggles() {
     return [
+      ["illustration", true],
       ["show_title", true],
       ["show_subtitle", true],
       ["show_suggestions", true],
@@ -2456,6 +2780,10 @@ class AssistCardEditor extends HTMLElement {
       { name: "title", selector: { text: {} } },
       { name: "area", selector: { area: {} } },
       { type: "grid", name: "", schema: this.constructor.toggles.map(([name]) => ({ name, selector: { boolean: {} } })) },
+      {
+        name: "illustration_theme",
+        selector: { select: { mode: "dropdown", options: ["auto", "day", "night"].map((v) => ({ value: v, label: tr(`theme_${v}`) })) } },
+      },
       { name: "height", selector: { number: { min: 160, max: 1200, step: 10, mode: "box", unit_of_measurement: "px" } } },
       {
         name: "language",
