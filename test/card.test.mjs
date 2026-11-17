@@ -422,3 +422,10 @@ test("every language has every text, with the same placeholders", () => {
   assert.equal(ac.lang({ language: "pt-BR" }, {}), "pt");
   assert.equal(ac.lang({ language: "sr-Latn" }, {}), "sr-Latn");
 });
+
+test("full card: the chat grows with the conversation up to its height, then scrolls (no empty block above the input)", async () => {
+  const h = html(await newCard({ height: 400 }));
+  assert.match(h, /\.chat \{ max-height: var\(--ac-height, 360px\); overflow-y: auto;/);
+  assert.doesNotMatch(h, /\.chat \{ height:/);
+  assert.match(h, /--ac-height: 400px;/);
+});

@@ -9,6 +9,9 @@
 - The status pill is back on the banner's title row, right after the title and in the icon's status color (on its own line under the subtitle when the title needs the room, its dot alone below 200 px). The mini card's expand / collapse button and the new conversation button are 24 px frosted discs on the banner's top-right line.
 - **Night picture with the dark theme even while the sun is up**: in `auto`, the banner shows the night picture when the sun is below the horizon or Home Assistant's theme is dark.
 
+### Fixes
+- **No empty block under a short conversation**: the full card's chat grows with the conversation up to its `height` (now a maximum), then scrolls, so the suggestions and the input bar follow the last message instead of leaving a large gap; the input's placeholder ends with an ellipsis on a narrow card.
+
 ## 1.0.0 - 2026-11-14
 
 ### Features

@@ -164,7 +164,7 @@ zoom: true
 | `suggestions` | both | Area requests | List of texts sent as they are when their chip is clicked (YAML only). Without it, a few requests about `area` (none without an area) |
 | `voice` | both | `true` | Microphone button (shown only when the pipeline has speech-to-text and the browser a microphone) |
 | `speak` | both | `false` | Read the answers aloud with the pipeline's text-to-speech |
-| `height` | both | `360` | Height of the chat, in pixels (160 to 1200); the mini card uses it in its unfolded view |
+| `height` | both | `360` | Maximum height of the chat, in pixels (160 to 1200): it grows with the conversation, then scrolls; the mini card uses it in its unfolded view |
 | `zoom` | mini | `true` | Detail button at the top right of the mini card: it unfolds the full chat (with the same options) and switches back; a click outside the card also folds it. `false` removes the button |
 | `language` | both | Auto | Force language: `en`, `fr`, `de`, `es`, `it`, `nl`, `pt`, `pl`, `sr`, `sr-Latn`, `ro`, `da`, `sv`, `bg`, `ru`, `uk`, `hu`, `sk`, `cs`, `sl`, `lv` or `el` (auto-detects from HA settings). It changes the card's texts, not the language Assist answers in (the pipeline's) |
 

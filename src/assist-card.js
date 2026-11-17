@@ -1768,7 +1768,7 @@ const BASE_STYLE = `
   .inputbar { display: flex; align-items: center; gap: 8px; padding: 10px 12px 12px; }
   .text { flex: 1 1 auto; min-width: 0; height: 44px; box-sizing: border-box; padding: 0 16px; border-radius: 22px; font: inherit; font-size: 14px;
           color: var(--primary-text-color); background: color-mix(in srgb, var(--ac-idle) 8%, transparent);
-          border: 1px solid color-mix(in srgb, var(--ac-idle) 30%, transparent); outline: none; transition: border-color .2s ease; }
+          border: 1px solid color-mix(in srgb, var(--ac-idle) 30%, transparent); outline: none; transition: border-color .2s ease; text-overflow: ellipsis; }
   .text::placeholder { color: var(--secondary-text-color); opacity: 1; }
   .text:focus { border-color: color-mix(in srgb, var(--ac-accent) 70%, transparent); }
   .text[disabled] { opacity: .6; }
@@ -1817,7 +1817,9 @@ const BASE_STYLE = `
 `;
 
 const FULL_STYLE = `
-  .chat { height: var(--ac-height, 360px); overflow-y: auto; overscroll-behavior: contain; padding: 12px 12px 4px; box-sizing: border-box;
+  /* The chat grows with the conversation up to its height (the height option), then scrolls: a short one leaves no
+     empty block above the suggestions and the input bar, which stay at the bottom of the card. */
+  .chat { max-height: var(--ac-height, 360px); overflow-y: auto; overscroll-behavior: contain; padding: 12px; box-sizing: border-box;
           display: flex; flex-direction: column; gap: 8px; scrollbar-width: thin; border-bottom: 1px solid var(--divider-color, rgba(127,127,127,.2)); }
   .msg { display: flex; flex-direction: column; gap: 4px; align-items: flex-start; }
   .msg.user { align-items: flex-end; }
