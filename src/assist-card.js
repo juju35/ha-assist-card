@@ -1398,6 +1398,13 @@ const md = (src) =>
 // typed in the input stays and the chat keeps its scroll position.
 // ---------------------------------------------------------------------------
 
+// The width of an element's whole text in fractional pixels, even while an ellipsis cuts it.
+const textWidth = (el) => {
+  const range = document.createRange();
+  range.selectNodeContents(el);
+  return range.getBoundingClientRect().width || el.scrollWidth;
+};
+
 const morph = (from, to) => {
   const a = Array.from(from.childNodes);
   const b = Array.from(to.childNodes);
@@ -1724,9 +1731,22 @@ const BASE_STYLE = `
   .active { --c: var(--ac-active); } .accent { --c: var(--ac-accent); }
   /* Title row: icon, titles, status pill (aligned on the title line), new conversation and detail buttons. */
   .header { display: flex; align-items: center; gap: 10px; padding: 12px 12px 0; }
-  .header:has(.sub) > .pill { margin-bottom: 14.4px; }
   .header:has(.sub) > .hbtn { margin-bottom: 14.4px; }
   .titles { flex: 1 1 0; min-width: 5ch; }
+  /* The status pill right after the title, its whole label on one line, while the title stays whole beside it
+     (measured by the card, see _fitPill); otherwise on its own line under a one-line subtitle, and with its dot alone
+     when even that does not fit the header. */
+  .tline { display: flex; align-items: center; gap: 8px; min-width: 0; }
+  .tline > .name { flex: 0 1 auto; min-width: 0; }
+  .tline > .pill { flex: none; max-width: none; }
+  .tline > .pill .pill-text { white-space: nowrap; overflow: visible; }
+  .titles.below { display: grid; grid-template-columns: minmax(0, 1fr); align-content: center; }
+  .titles.below > .tline { display: contents; }
+  .titles.below > .tline > .pill { order: 3; justify-self: start; align-self: start; margin-top: 3px; }
+  .titles.below > .sub { order: 2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .titles.dot-only > .tline { display: flex; }
+  .titles.dot-only > .tline > .pill { order: 0; margin-top: 0; align-self: center; padding: 4px; }
+  .titles.dot-only > .tline > .pill .pill-text { display: none; }
   :host([hide-title]) .titles .name, :host([hide-subtitle]) .titles > .sub { display: none; }
   .name { font-size: 16px; font-weight: 500; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .sub { font-size: 12px; color: var(--secondary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -1808,9 +1828,11 @@ const BASE_STYLE = `
   .tool .icon { width: 12px; height: 12px; }
   .warning { padding: 10px 12px; border-radius: 10px; font-size: 13px; --c: var(--ac-warn); color: color-mix(in srgb, var(--c) 50%, var(--primary-text-color));
              background: color-mix(in srgb, var(--c) 12%, transparent); border: 1px solid color-mix(in srgb, var(--c) 35%, transparent); }
-  @container as-card (max-width: 260px) {
+  @container as-card (max-width: 200px) {
     .pill { padding: 4px; flex: none; }
     .pill-text { display: none; }
+  }
+  @container as-card (max-width: 260px) {
     .header { gap: 6px; }
     .bubble { max-width: 92%; }
   }
@@ -1855,10 +1877,8 @@ const BANNER_STYLE = `
   .htext { position: absolute; z-index: 1; left: 12px; top: 0; bottom: var(--as-ground-h); right: calc(min(var(--as-scene-w), 62%, 100cqw - 250px) + 4px);
            display: flex; align-items: center; gap: 10px; min-width: 0; }
   .htext .titles { container: as-titles / inline-size; align-self: stretch; display: grid; grid-template-columns: minmax(0, 1fr); align-content: center; row-gap: 1px; min-width: 0; flex: 1 1 0; }
-  /* The status pill right after the title, centred on it, in the icon's color; the title ellipsises first and keeps
-     4 characters. A narrow card puts the pill on its own line under the subtitle, and keeps only its dot below 200 px. */
-  .banner .tline { display: flex; align-items: center; gap: 8px; min-width: 0; }
-  .banner .tline .name { flex: 0 100 auto; min-width: 5ch; }
+  /* The status pill right after the title, centred on it, in the icon's color (placed by _fitPill); below 200 px, its
+     dot alone. */
   .banner .name { font-size: 16px; font-weight: 500; }
   .banner .badge { position: relative; background: rgba(255,255,255,.62); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 22%, transparent); }
   .banner.night .badge { background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); }
@@ -1868,7 +1888,7 @@ const BANNER_STYLE = `
   .blogo { position: absolute; right: -4px; bottom: -4px; width: 18px; height: 18px; border-radius: 5px; padding: 2px; box-sizing: border-box;
            display: grid; place-items: center; background: #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.12), 0 1px 3px rgba(0,0,0,.18); }
   .blogo img { width: 100%; height: 100%; object-fit: contain; }
-  .banner .pill { flex: 0 1 auto; gap: 4px; padding: 1px 8px; max-width: calc(100% - 52px);
+  .banner .pill { gap: 4px; padding: 1px 8px;
                   background: color-mix(in srgb, var(--c) 18%, rgba(255,255,255,.78)); color: color-mix(in srgb, var(--c) 45%, #0d2a45); }
   .banner.night .pill { background: color-mix(in srgb, var(--c) 30%, rgba(8,18,38,.55)); color: color-mix(in srgb, var(--c) 35%, #ffffff); }
   .banner .pill .dot { width: 7px; height: 7px; }
@@ -1888,13 +1908,6 @@ const BANNER_STYLE = `
   .banner.has-btns .htext { right: calc(min(var(--as-scene-w), 62%, 100cqw - 250px) + 34px); }
   /* Narrow card: no room for the scene beside the text, the room's wall and floor alone stay. */
   @container (max-width: 300px) { .as-scene { display: none; } .htext, .banner.has-btns .htext { right: 40px; } .banner.btns-2 .htext { right: 64px; } }
-  /* Not enough room beside the title (a narrow card, or the scene taking its share): the pill on its own line under
-     the subtitle; below 200 px, its dot alone. */
-  @container as-titles (max-width: 230px) {
-    .banner .tline { display: contents; }
-    .banner .pill { grid-row: 3; justify-self: start; max-width: 100%; margin-top: 2px; }
-  }
-  @container as-card (max-width: 260px) { .banner .pill { padding: 1px 8px; } .banner .pill-text { display: block; } }
   @container as-card (max-width: 200px) { .banner .pill { padding: 4px; } .banner .pill-text { display: none; } }
 `;
 
@@ -2063,10 +2076,24 @@ class AssistCard extends HTMLElement {
   }
 
   connectedCallback() {
+    // A new width (or the web font loaded): the status pill is fitted again, in the next frame.
+    if (typeof ResizeObserver === "function") {
+      this._resize ??= new ResizeObserver((entries) => {
+        const w = Math.round(entries.at(-1).contentRect.width);
+        if (w === this._fitWidth) return;
+        this._fitWidth = w;
+        cancelAnimationFrame(this._fitFrame);
+        this._fitFrame = requestAnimationFrame(() => this._fitPill());
+      });
+      this._resize.observe(this);
+    }
+    document.fonts?.ready?.then(() => this._fitPill());
     if (this._hass && this._config) this._update();
   }
 
   disconnectedCallback() {
+    this._resize?.disconnect();
+    this._fitWidth = null;
     // Off the page: the microphone is released and the speech stopped; the conversation stays for the next visit.
     if (this._voice) this._cancelVoice();
     this._stopAudio();
@@ -2113,6 +2140,46 @@ class AssistCard extends HTMLElement {
 
   // ---- Rendering -----------------------------------------------------------
 
+  // The header's status pill goes right after the title, on its row, only while the title stays whole and the
+  // pill's whole label fits beside it; otherwise it takes a line of its own under the subtitle (.below), the title
+  // whole on its row (cut only when it does not fit alone). There, in the banner, the subtitle keeps one line; if the
+  // text still does not fit above the ground strip, the pill keeps its dot alone (.dot-only, its label in its tooltip
+  // and for screen readers). Measured after each render and on each new width, whatever the language: no fixed
+  // width threshold.
+  _fitPill() {
+    for (const t of this.shadowRoot?.querySelectorAll?.(".titles") || []) {
+      const row = t.querySelector(".tline");
+      const pills = row ? [...row.children].filter((n) => n.matches(".pill")) : [];
+      if (!pills.length || !pills[0].getBoundingClientRect) continue;
+      t.classList.remove("below", "dot-only");
+      const name = row.querySelector(".name");
+      const gap = parseFloat(getComputedStyle(row).columnGap) || 0;
+      const title = name && getComputedStyle(name).display !== "none" ? textWidth(name) + gap : 0;
+      const need = pills.reduce((w, p) => w + p.getBoundingClientRect().width + gap, title - gap);
+      if (need > row.getBoundingClientRect().width - 0.5) {
+        t.classList.add("below");
+        const banner = t.closest(".banner");
+        if (banner) {
+          const b = banner.getBoundingClientRect();
+          const out = [...t.querySelectorAll("*")].some((n) => {
+            const r = n.getBoundingClientRect();
+            return r.height > 0 && (r.top < b.top - 0.5 || r.bottom > b.bottom - (parseFloat(getComputedStyle(banner).getPropertyValue("--as-ground-h")) || 10) + 0.5);
+          });
+          if (out) t.classList.add("dot-only");
+        }
+      }
+      // A subtitle cut by its ellipsis keeps its whole text in its tooltip.
+      const s = t.querySelector(".sub");
+      if (s && (!s.hasAttribute("title") || s.dataset.fit)) {
+        const cut = s.scrollWidth > s.clientWidth + 1;
+        s.toggleAttribute("data-fit", cut);
+        if (cut) s.title = s.textContent.trim();
+        else s.removeAttribute("title");
+      }
+    }
+  }
+
+
   _update() {
     if (!this._hass || !this._config) return;
     const html = this._render();
@@ -2125,6 +2192,7 @@ class AssistCard extends HTMLElement {
       tpl.innerHTML = html;
       morph(root, tpl.content);
     }
+    this._fitPill();
     const chat = root.querySelector?.(".chat");
     if (chat && this._stick) chat.scrollTop = chat.scrollHeight;
   }
@@ -2194,10 +2262,9 @@ class AssistCard extends HTMLElement {
     return `<div class="header">
         ${this._badge(cls)}
         <div class="titles">
-          ${name}
+          <div class="tline">${name}${pill}</div>
           ${sub ? `<div class="sub">${sub}</div>` : ""}
         </div>
-        ${pill}
         ${newChat}${this._zoomButton()}
       </div>`;
   }
