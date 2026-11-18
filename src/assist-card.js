@@ -60,7 +60,7 @@ const STRINGS = {
     lang_auto: "Automatic",
     illustration: "Animated illustration",
     illustration_theme: "Illustration theme",
-    theme_auto: "Automatic (sun or dark theme)",
+    theme_auto: "Automatic (follows the theme)",
     theme_day: "Day",
     theme_night: "Night",
     zoom: "Detail button",
@@ -117,7 +117,7 @@ const STRINGS = {
     lang_auto: "Automatique",
     illustration: "Illustration animée",
     illustration_theme: "Thème de l’illustration",
-    theme_auto: "Automatique (soleil ou thème sombre)",
+    theme_auto: "Automatique (suit le thème)",
     theme_day: "Jour",
     theme_night: "Nuit",
     zoom: "Bouton détail",
@@ -174,7 +174,7 @@ const STRINGS = {
     lang_auto: "Automatisch",
     illustration: "Animierte Illustration",
     illustration_theme: "Thema der Illustration",
-    theme_auto: "Automatisch (Sonne oder dunkles Design)",
+    theme_auto: "Automatisch (folgt dem Design)",
     theme_day: "Tag",
     theme_night: "Nacht",
     zoom: "Detailschaltfläche",
@@ -231,7 +231,7 @@ const STRINGS = {
     lang_auto: "Automático",
     illustration: "Ilustración animada",
     illustration_theme: "Tema de la ilustración",
-    theme_auto: "Automático (sol o tema oscuro)",
+    theme_auto: "Automático (sigue el tema)",
     theme_day: "Día",
     theme_night: "Noche",
     zoom: "Botón de detalle",
@@ -288,7 +288,7 @@ const STRINGS = {
     lang_auto: "Automatica",
     illustration: "Illustrazione animata",
     illustration_theme: "Tema dell’illustrazione",
-    theme_auto: "Automatico (sole o tema scuro)",
+    theme_auto: "Automatico (segue il tema)",
     theme_day: "Giorno",
     theme_night: "Notte",
     zoom: "Pulsante dettagli",
@@ -345,7 +345,7 @@ const STRINGS = {
     lang_auto: "Automatisch",
     illustration: "Geanimeerde illustratie",
     illustration_theme: "Thema van de illustratie",
-    theme_auto: "Automatisch (zon of donker thema)",
+    theme_auto: "Automatisch (volgt het thema)",
     theme_day: "Dag",
     theme_night: "Nacht",
     zoom: "Detailknop",
@@ -402,7 +402,7 @@ const STRINGS = {
     lang_auto: "Automático",
     illustration: "Ilustração animada",
     illustration_theme: "Tema da ilustração",
-    theme_auto: "Automático (sol ou tema escuro)",
+    theme_auto: "Automático (segue o tema)",
     theme_day: "Dia",
     theme_night: "Noite",
     zoom: "Botão de detalhe",
@@ -459,7 +459,7 @@ const STRINGS = {
     lang_auto: "Automatycznie",
     illustration: "Animowana ilustracja",
     illustration_theme: "Motyw ilustracji",
-    theme_auto: "Automatycznie (słońce lub ciemny motyw)",
+    theme_auto: "Automatycznie (według motywu)",
     theme_day: "Dzień",
     theme_night: "Noc",
     zoom: "Przycisk szczegółów",
@@ -516,7 +516,7 @@ const STRINGS = {
     lang_auto: "Аутоматски",
     illustration: "Анимирана илустрација",
     illustration_theme: "Тема илустрације",
-    theme_auto: "Аутоматски (сунце или тамна тема)",
+    theme_auto: "Аутоматски (прати тему)",
     theme_day: "Дан",
     theme_night: "Ноћ",
     zoom: "Дугме за детаље",
@@ -573,7 +573,7 @@ const STRINGS = {
     lang_auto: "Automatski",
     illustration: "Animirana ilustracija",
     illustration_theme: "Tema ilustracije",
-    theme_auto: "Automatski (sunce ili tamna tema)",
+    theme_auto: "Automatski (prati temu)",
     theme_day: "Dan",
     theme_night: "Noć",
     zoom: "Dugme za detalje",
@@ -630,7 +630,7 @@ const STRINGS = {
     lang_auto: "Automat",
     illustration: "Ilustrație animată",
     illustration_theme: "Tema ilustrației",
-    theme_auto: "Automat (soare sau temă întunecată)",
+    theme_auto: "Automat (urmează tema)",
     theme_day: "Zi",
     theme_night: "Noapte",
     zoom: "Buton detalii",
@@ -687,7 +687,7 @@ const STRINGS = {
     lang_auto: "Automatisk",
     illustration: "Animeret illustration",
     illustration_theme: "Illustrationens tema",
-    theme_auto: "Automatisk (sol eller mørkt tema)",
+    theme_auto: "Automatisk (følger temaet)",
     theme_day: "Dag",
     theme_night: "Nat",
     zoom: "Detaljeknap",
@@ -744,7 +744,7 @@ const STRINGS = {
     lang_auto: "Automatiskt",
     illustration: "Animerad illustration",
     illustration_theme: "Illustrationens tema",
-    theme_auto: "Automatiskt (sol eller mörkt tema)",
+    theme_auto: "Automatiskt (följer temat)",
     theme_day: "Dag",
     theme_night: "Natt",
     zoom: "Detaljknapp",
@@ -801,7 +801,7 @@ const STRINGS = {
     lang_auto: "Автоматично",
     illustration: "Анимирана илюстрация",
     illustration_theme: "Тема на илюстрацията",
-    theme_auto: "Автоматично (слънце или тъмна тема)",
+    theme_auto: "Автоматично (следва темата)",
     theme_day: "Ден",
     theme_night: "Нощ",
     zoom: "Бутон за детайли",
@@ -858,7 +858,7 @@ const STRINGS = {
     lang_auto: "Автоматически",
     illustration: "Анимированная иллюстрация",
     illustration_theme: "Тема иллюстрации",
-    theme_auto: "Автоматически (солнце или тёмная тема)",
+    theme_auto: "Автоматически (следует теме)",
     theme_day: "День",
     theme_night: "Ночь",
     zoom: "Кнопка подробностей",
@@ -915,7 +915,7 @@ const STRINGS = {
     lang_auto: "Автоматично",
     illustration: "Анімована ілюстрація",
     illustration_theme: "Тема ілюстрації",
-    theme_auto: "Автоматично (сонце або темна тема)",
+    theme_auto: "Автоматично (за темою)",
     theme_day: "День",
     theme_night: "Ніч",
     zoom: "Кнопка подробиць",
@@ -972,7 +972,7 @@ const STRINGS = {
     lang_auto: "Automatikus",
     illustration: "Animált illusztráció",
     illustration_theme: "Az illusztráció témája",
-    theme_auto: "Automatikus (nap vagy sötét téma)",
+    theme_auto: "Automatikus (a témát követi)",
     theme_day: "Nappal",
     theme_night: "Éjszaka",
     zoom: "Részletek gomb",
@@ -1029,7 +1029,7 @@ const STRINGS = {
     lang_auto: "Automaticky",
     illustration: "Animovaná ilustrácia",
     illustration_theme: "Téma ilustrácie",
-    theme_auto: "Automaticky (slnko alebo tmavá téma)",
+    theme_auto: "Automaticky (podľa témy)",
     theme_day: "Deň",
     theme_night: "Noc",
     zoom: "Tlačidlo detailu",
@@ -1086,7 +1086,7 @@ const STRINGS = {
     lang_auto: "Automaticky",
     illustration: "Animovaná ilustrace",
     illustration_theme: "Motiv ilustrace",
-    theme_auto: "Automaticky (slunce nebo tmavý motiv)",
+    theme_auto: "Automaticky (podle motivu)",
     theme_day: "Den",
     theme_night: "Noc",
     zoom: "Tlačítko detailu",
@@ -1143,7 +1143,7 @@ const STRINGS = {
     lang_auto: "Samodejno",
     illustration: "Animirana ilustracija",
     illustration_theme: "Tema ilustracije",
-    theme_auto: "Samodejno (sonce ali temna tema)",
+    theme_auto: "Samodejno (sledi temi)",
     theme_day: "Dan",
     theme_night: "Noč",
     zoom: "Gumb za podrobnosti",
@@ -1200,7 +1200,7 @@ const STRINGS = {
     lang_auto: "Automātiski",
     illustration: "Animēta ilustrācija",
     illustration_theme: "Ilustrācijas motīvs",
-    theme_auto: "Automātiski (saule vai tumšā tēma)",
+    theme_auto: "Automātiski (pēc tēmas)",
     theme_day: "Diena",
     theme_night: "Nakts",
     zoom: "Detaļu poga",
@@ -1257,7 +1257,7 @@ const STRINGS = {
     lang_auto: "Αυτόματα",
     illustration: "Κινούμενη εικονογράφηση",
     illustration_theme: "Θέμα εικονογράφησης",
-    theme_auto: "Αυτόματο (ήλιος ή σκούρο θέμα)",
+    theme_auto: "Αυτόματο (ακολουθεί το θέμα)",
     theme_day: "Ημέρα",
     theme_night: "Νύχτα",
     zoom: "Κουμπί λεπτομερειών",
@@ -1583,13 +1583,13 @@ class VoiceRecorder {
 // The scene of each status of the card (_status()).
 const SCENE_STATES = { ready: "idle", listening: "listening", transcribing: "thinking", thinking: "thinking", speaking: "speaking", error: "error", unavailable: "off" };
 
-// Night picture: forced by illustration_theme, else the sun below the horizon or Home Assistant's dark mode
-// (the dark theme shows the night picture even while the sun is up; an unavailable sun leaves the dark mode alone).
+// Night picture: forced by illustration_theme, else Home Assistant's dark mode alone (a light theme keeps the day
+// picture after sunset).
 const isNight = (hass, config) => {
   const theme = config?.illustration_theme;
   if (theme === "night") return true;
   if (theme === "day") return false;
-  return hass?.states?.["sun.sun"]?.state === "below_horizon" || !!hass?.themes?.darkMode;
+  return !!hass?.themes?.darkMode;
 };
 
 // Three sound arcs beside the speaker: on its left (side -1) or its right (side 1).
@@ -2035,7 +2035,7 @@ class AssistCard extends HTMLElement {
     return this._hass;
   }
 
-  // What a render reads from hass: the language, the theme, the sun (the illustration's night), the agent's state and
+  // What a render reads from hass: the language, the theme (also the illustration's night), the agent's state and
   // registry entry, the area.
   _deps() {
     const h = this._hass;
@@ -2044,7 +2044,6 @@ class AssistCard extends HTMLElement {
       h.language,
       h.locale,
       h.themes?.darkMode,
-      h.states?.["sun.sun"]?.state,
       h.entities?.[agent],
       h.states?.[agent],
       this._config?.area && h.areas?.[this._config.area],
