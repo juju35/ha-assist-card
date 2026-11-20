@@ -1385,6 +1385,9 @@ const blocks = (text) => {
 };
 
 // A fence left open (an answer still streaming) holds code up to the end.
+// Messages kept in the conversation shown: the oldest go past it, so a card left open for days stays light.
+const MAX_MESSAGES = 200;
+
 const md = (src) =>
   String(src ?? "")
     .replace(/\r\n?/g, "\n")
@@ -2285,7 +2288,12 @@ class AssistCard extends HTMLElement {
     const tools = m.tools?.length
       ? `<div class="tools" title="${esc(this._t("tools_used"))}">${m.tools.map((n) => `<span class="tool">${svgIcon(ICONS.wrench)}${esc(n)}</span>`).join("")}</div>`
       : "";
-    const body = m.text ? `<div class="bubble md${m.streaming ? " streaming" : ""}">${md(m.text)}</div>` : "";
+    // md() once per text: each streamed frame re-renders the conversation, only the growing answer is parsed again.
+    if (m.text && m._mdSrc !== m.text) {
+      m._mdSrc = m.text;
+      m._md = md(m.text);
+    }
+    const body = m.text ? `<div class="bubble md${m.streaming ? " streaming" : ""}">${m._md}</div>` : "";
     return `<div class="msg assistant">${tools}${body}</div>`;
   }
 
@@ -2424,6 +2432,8 @@ class AssistCard extends HTMLElement {
     if (!q || this._busy || !this._hass || this._problem()) return;
     this._stopAudio();
     const run = ++this._run;
+    // The conversation shown keeps its last MAX_MESSAGES messages (the agent keeps its own context).
+    if (this._messages.length >= MAX_MESSAGES) this._messages = this._messages.slice(-(MAX_MESSAGES - 1));
     this._messages.push({ role: "user", text: q, run });
     this._busy = true;
     this._stick = true;

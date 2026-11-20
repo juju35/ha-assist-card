@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.1.2 - 2026-11-20
+
+### Performance
+- Streaming answers: each frame parsed the Markdown of the whole conversation again; every message is now parsed once per text, only the answer being streamed is parsed again. The conversation shown keeps its last 200 messages, so a card left open for days stays light (the agent keeps its own context).
+
+### Maintenance
+- Tests: the streaming test waits for the streamed answer instead of a fixed 80 ms delay, which failed under load (coverage run).
+- CI: the branch cleanup recognises the commits of the `juju35-screenshots` app (it only knew the former `github-actions[bot]` `[skip ci]` ones), so a branch whose only leftover is the bot's screenshots commit is deleted after the merge.
+
 ## 1.1.1 - 2026-11-18
 
 ### Fixes

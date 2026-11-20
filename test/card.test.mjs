@@ -5,6 +5,10 @@ import { load } from "./load.mjs";
 
 const ac = load();
 const ticks = (n = 20) => new Promise((r) => setTimeout(r, n));
+// Waits until `ok()` holds (a streamed run sends its events one timer tick apart: under load a fixed wait is too short).
+const until = async (ok, ms = 2000) => {
+  for (const end = Date.now() + ms; !ok() && Date.now() < end; ) await ticks(5);
+};
 
 // A fresh connection each time: the pipelines are read once per connection.
 const makeHass = (extra = {}) => mockHass({ pipelines: structuredClone(PIPELINES), states: STATES, entities: ENTITIES, areas: AREAS, script: SCRIPT, ...extra });
@@ -37,6 +41,21 @@ test("markdown-lite: escaped first, then bold, italic, code, lists, headings and
   assert.equal(ac.md("2 * 3 * 4 and snake_case_name"), "<p>2 * 3 * 4 and snake_case_name</p>");
   assert.equal(ac.md("`**not bold**`"), "<p><code>**not bold**</code></p>");
   assert.equal(ac.md(""), "");
+});
+
+test("a long conversation keeps its last messages, each answer is parsed once per text", async () => {
+  const card = await newCard();
+  card._messages = Array.from({ length: ac.MAX_MESSAGES + 20 }, (_, i) => ({ role: i % 2 ? "assistant" : "user", text: `m${i}`, run: 0 }));
+  await card._send("Turn on the living room lights");
+  assert.ok(card._messages.length <= ac.MAX_MESSAGES + 2, `${card._messages.length} messages`);
+  assert.equal(card._messages.find((m) => m.role === "user" && m.text.startsWith("Turn")).text, "Turn on the living room lights");
+  const answer = card._messages.at(-1);
+  const parsed = answer._md;
+  card._message(answer);
+  assert.equal(answer._md, parsed, "same text: not parsed again");
+  answer.text += " More.";
+  card._message(answer);
+  assert.match(answer._md, /More\./);
 });
 
 test("the pipeline of the config: the preferred one by default, null when it does not exist", () => {
@@ -113,7 +132,7 @@ test("while an answer streams: the typing dots first, then the partial text with
   assert.equal(runs(hass).length, 1);
   card._newConversation(true);
   card._send("Write a short note for the fridge");
-  await ticks(80);
+  await until(() => /bubble md streaming/.test(html(card)) && /Dinner is in the oven,/.test(html(card)));
   const h = html(card);
   assert.match(h, /bubble md streaming/);
   assert.match(h, /<strong>Back at 7 pm\.<\/strong> Dinner is in the oven,/);
