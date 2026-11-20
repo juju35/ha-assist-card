@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.2 - 2026-11-20
+
+### Maintenance
+- Tests: the streaming test waits for the streamed answer instead of a fixed 80 ms delay, which failed under load (coverage run).
+- CI: the branch cleanup recognises the commits of the `juju35-screenshots` app (it only knew the former `github-actions[bot]` `[skip ci]` ones), so a branch whose only leftover is the bot's screenshots commit is deleted after the merge.
+
 ## 1.1.1 - 2026-11-18
 
 ### Fixes
