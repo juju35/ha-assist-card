@@ -43,6 +43,21 @@ test("markdown-lite: escaped first, then bold, italic, code, lists, headings and
   assert.equal(ac.md(""), "");
 });
 
+test("a long conversation keeps its last messages, each answer is parsed once per text", async () => {
+  const card = await newCard();
+  card._messages = Array.from({ length: ac.MAX_MESSAGES + 20 }, (_, i) => ({ role: i % 2 ? "assistant" : "user", text: `m${i}`, run: 0 }));
+  await card._send("Turn on the living room lights");
+  assert.ok(card._messages.length <= ac.MAX_MESSAGES + 2, `${card._messages.length} messages`);
+  assert.equal(card._messages.find((m) => m.role === "user" && m.text.startsWith("Turn")).text, "Turn on the living room lights");
+  const answer = card._messages.at(-1);
+  const parsed = answer._md;
+  card._message(answer);
+  assert.equal(answer._md, parsed, "same text: not parsed again");
+  answer.text += " More.";
+  card._message(answer);
+  assert.match(answer._md, /More\./);
+});
+
 test("the pipeline of the config: the preferred one by default, null when it does not exist", () => {
   assert.equal(ac.pickPipeline(undefined, "x"), undefined);
   assert.equal(ac.pickPipeline(PL, undefined).name, "Google AI");
