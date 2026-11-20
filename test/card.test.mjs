@@ -5,6 +5,10 @@ import { load } from "./load.mjs";
 
 const ac = load();
 const ticks = (n = 20) => new Promise((r) => setTimeout(r, n));
+// Waits until `ok()` holds (a streamed run sends its events one timer tick apart: under load a fixed wait is too short).
+const until = async (ok, ms = 2000) => {
+  for (const end = Date.now() + ms; !ok() && Date.now() < end; ) await ticks(5);
+};
 
 // A fresh connection each time: the pipelines are read once per connection.
 const makeHass = (extra = {}) => mockHass({ pipelines: structuredClone(PIPELINES), states: STATES, entities: ENTITIES, areas: AREAS, script: SCRIPT, ...extra });
@@ -113,7 +117,7 @@ test("while an answer streams: the typing dots first, then the partial text with
   assert.equal(runs(hass).length, 1);
   card._newConversation(true);
   card._send("Write a short note for the fridge");
-  await ticks(80);
+  await until(() => /bubble md streaming/.test(html(card)) && /Dinner is in the oven,/.test(html(card)));
   const h = html(card);
   assert.match(h, /bubble md streaming/);
   assert.match(h, /<strong>Back at 7 pm\.<\/strong> Dinner is in the oven,/);
