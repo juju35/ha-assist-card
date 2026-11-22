@@ -2952,7 +2952,7 @@ for (const card of [
   },
   { type: "assist-mini-card", name: "Assist Mini Card", description: "One input line and the last answer of Assist, unfolding to the full chat." },
 ]) {
-  if (!window.customCards.some((c) => c.type === card.type)) window.customCards.push({ ...card, preview: true, documentationURL: "https://github.com/juju35/ha-assist-card" });
+  if (!window.customCards.some((c) => c.type === card.type)) window.customCards.push({ ...card, preview: false, documentationURL: "https://github.com/juju35/ha-assist-card" });
 }
 
 console.info(`%c ASSIST-CARD %c ${VERSION} `, "color:#fff;background:#7e57c2;font-weight:700", "color:#7e57c2;background:transparent");
