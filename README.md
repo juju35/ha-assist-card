@@ -52,7 +52,7 @@ Any conversation agent of Home Assistant works, through an Assist pipeline or di
 
 | Agent | Notes |
 |---|---|
-| [Home Assistant](https://www.home-assistant.io/integrations/conversation/) (built-in, `conversation.home_assistant`) | Set sentences: the area is not added to the request, the answer comes at once |
+| <img src="https://raw.githubusercontent.com/juju35/ha-assist-card/main/images/home_assistant.png" alt="" width="16"> [Home Assistant](https://www.home-assistant.io/integrations/conversation/) (built-in, `conversation.home_assistant`) | Set sentences: the area is not added to the request, the answer comes at once |
 | <img src="https://raw.githubusercontent.com/juju35/ha-assist-card/main/images/google_generative_ai_conversation.png" alt="" width="16"> [Google Generative AI](https://www.home-assistant.io/integrations/google_generative_ai_conversation/) | Streamed answers and tools through a pipeline |
 | <img src="https://raw.githubusercontent.com/juju35/ha-assist-card/main/images/openai_conversation.png" alt="" width="16"> [OpenAI](https://www.home-assistant.io/integrations/openai_conversation/) | Streamed answers and tools through a pipeline |
 | <img src="https://raw.githubusercontent.com/juju35/ha-assist-card/main/images/anthropic.png" alt="" width="16"> [Anthropic](https://www.home-assistant.io/integrations/anthropic/) | Streamed answers and tools through a pipeline |
